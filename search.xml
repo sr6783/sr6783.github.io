@@ -3,8 +3,15 @@
   
     
     <entry>
+      <title><![CDATA[像程序员般思考]]></title>
+      <url>%2F2017%2F04%2F04%2F%E5%83%8F%E7%A8%8B%E5%BA%8F%E5%91%98%E8%88%AC%E6%80%9D%E8%80%83%2F</url>
+      <content type="text"><![CDATA[平常我们在学习的过程中,比如遇到一个新的术语,新的概念或者所有对于你来说都是未知的”新”东西,你下意识会选择怎么办? 我不知道你会怎么办?反正之前的我会先选择维基百科一下看看它是什么(What),然后映入眼前的是大篇幅官方描述,此时如果你有相关领域的经历或者经验(底蕴),很好,轻而易举地理解了它在表述什么,但是如果你之前没有接触过呢?想必看完也是一头雾水。比如socket这个词,你搜词典,它上面的解释”插座,给…配插座”,当然更强大一点的词典,比如有道,它还有网络释义套接字,很好,词典很强大,和维基百科说的也是一样的。 在计算机科学中，网络套接字（英语：Network socket），又译网络套接字、网络接口、网络插槽，是电脑网络中进程间数据流的端点。使用以网际协议（Internet Protocol）为通信基础的网络套接字，称为网际套接字（Internet socket）。因为网际协议的流行，现代绝大多数的网络套接字，都是属于网际套接字。 socket是一种操作系统提供的进程间通信机制。[1]socket最初被翻译为把socket译为“媒介(字)”[2]。不久，ARPANET的socket就被翻译为“套接字”，其理由是：[3] 通过这段话,我们得出了几个信息: What:套接字 Do:用于进程间通信 通过这些信息加上我们的”理解”看似已经达到了我们从无到有的认识过程。但这是不属于你的,因为这其实只是凭借着我们大脑的记忆能力强行地进行了一下复制粘贴。这样不牢固的东西是不稳的,就像天龙八部里的慕容复,看似武学渊博,什么都会,名头响亮。但其实他就像一个瓷器,当遇到真正的高手时,就暴露出了问题。因为他无一精通,没有自己的见解,都是照搬别人。但高手之间的对决,往往是变幻莫测的。这就好像我们的程序,完成需求是容易的,难得是维护和迭代。回到socket的问题上,既然是表示网络进程通信为什么不叫Web Communication,这样不更容易理解一下吗?诶,好像这么说也有道理啊,是不是此时感觉之前对socket的理解又动摇了呢?这就是知其然而不知其所以然带来的后果,其实我们真正在看到的一个”新”(可能对于你来说是)的问题时,应该建立这样一个思考问题的过程 为什么会产生这个问题?因为这是人类社会,凡事不会凭空发生,肯定有原因。我觉得了解为什么是拨开神秘面纱的第一步。 其次是How 然后才是What 最后再去建立和别的事物的联系,回头再思考下有什么不足 而对于高明的程序员来说,这其实就是他们的本能的思考和解决问题的行为。 回到socket的产生上,直到我在知乎上看到一篇帖子“Socket为什么要翻译成套接字？”中陈振玥先生的回答才让我反思写下这篇博客记录下——面对于一个未知问题的思考方式。里面大致是这么说的:最早“网络连接”这个词对于那个时代还是一个新兴词汇。当时的网络连接对于大部分人来说是无法理解其含义的,所以作者为了解释清楚,才有了socket,原意想表达的就是建立网络连接就像插插座一样,一方去插,而另一方被插,这就是socket的由来。但是为什么后来变成了套接字呢?这其实更容易理解了,随着发展,大家理解了网络连接的过程,“网络连接”比起早期更复杂了,它被发扬光大了,所以基于这两种情况,插插座这种狭义理解已经不太符合它的定位了。 1. 人类认知的上升 2. 职责的增大 而应试教育和急于求成的心理或多或少地让我们变得浮躁,应试教育让我们的思想变得僵硬,你可以说你在做一道数学题的时候是有在思考问题,但是其实我觉得只能算一半。急于求成的心理往往使我们遇到问题直接询问或者查找如何解决,不加一点地思考,不追根溯源。]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[第二篇博客]]></title>
-      <url>%2F2017%2F03%2F17%2F%E7%AC%AC%E4%BA%8C%E7%AF%87%E5%8D%9A%E5%AE%A2%2F</url>
+      <url>%2F2017%2F03%2F30%2F%E7%AC%AC%E4%BA%8C%E7%AF%87%E5%8D%9A%E5%AE%A2%2F</url>
       <content type="text"><![CDATA[这是第二篇博客，我的标签页在哪]]></content>
     </entry>
 
@@ -12,7 +19,7 @@
     <entry>
       <title><![CDATA[使用Hexo搭建静态博客]]></title>
       <url>%2F2017%2F02%2F16%2Fhello-world%2F</url>
-      <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <content type="text"><![CDATA[官方文档：https://hexo.io/github地址：https://github.com/hexojs/hexo主题文档： Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
     </entry>
 
     
