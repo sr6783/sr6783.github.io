@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="思考问题的方式," />
+  <meta name="keywords" content="博客, JavaScript" />
 
 
 
@@ -87,16 +87,19 @@
 
 
 
-<meta name="description" content="平常我们在学习的过程中,比如遇到一个新的术语,新的概念或者所有对于你来说都是未知的”新”东西,你下意识会选择怎么办?">
+<meta name="description" content="首先,在了解字符集和字符编码是什么之前先去看看为什么会有字符集和字符编码,它是为了解决什么问题?
+字符集的产生我们平时在计算机屏幕上看到的文字内容并不是直接以文字的形式存储在计算机的存储介质中,计算机存储介质中存放的实际上是二进制的比特流。也就是说,不论你在计算机上看到的汉字,英文字母,日文等等,一旦存入计算机存储介质中,最终都是以010101010形式存放。那么如何确保拿出来转换的是汉字不是日文">
 <meta property="og:type" content="article">
-<meta property="og:title" content="像程序员般思考">
-<meta property="og:url" content="http://yoursite.com/2017/04/04/像程序员般思考/index.html">
+<meta property="og:title" content="字符集和字符编码">
+<meta property="og:url" content="http://yoursite.com/2017/04/08/字符集和字符编码/index.html">
 <meta property="og:site_name" content="阿瑞斯的BLOG">
-<meta property="og:description" content="平常我们在学习的过程中,比如遇到一个新的术语,新的概念或者所有对于你来说都是未知的”新”东西,你下意识会选择怎么办?">
-<meta property="og:updated_time" content="2017-04-04T06:23:09.000Z">
+<meta property="og:description" content="首先,在了解字符集和字符编码是什么之前先去看看为什么会有字符集和字符编码,它是为了解决什么问题?
+字符集的产生我们平时在计算机屏幕上看到的文字内容并不是直接以文字的形式存储在计算机的存储介质中,计算机存储介质中存放的实际上是二进制的比特流。也就是说,不论你在计算机上看到的汉字,英文字母,日文等等,一旦存入计算机存储介质中,最终都是以010101010形式存放。那么如何确保拿出来转换的是汉字不是日文">
+<meta property="og:updated_time" content="2017-04-08T16:50:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="像程序员般思考">
-<meta name="twitter:description" content="平常我们在学习的过程中,比如遇到一个新的术语,新的概念或者所有对于你来说都是未知的”新”东西,你下意识会选择怎么办?">
+<meta name="twitter:title" content="字符集和字符编码">
+<meta name="twitter:description" content="首先,在了解字符集和字符编码是什么之前先去看看为什么会有字符集和字符编码,它是为了解决什么问题?
+字符集的产生我们平时在计算机屏幕上看到的文字内容并不是直接以文字的形式存储在计算机的存储介质中,计算机存储介质中存放的实际上是二进制的比特流。也就是说,不论你在计算机上看到的汉字,英文字母,日文等等,一旦存入计算机存储介质中,最终都是以010101010形式存放。那么如何确保拿出来转换的是汉字不是日文">
 
 
 
@@ -124,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/04/像程序员般思考/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/08/字符集和字符编码/"/>
 
 
 
 
 
-  <title> 像程序员般思考 | 阿瑞斯的BLOG </title>
+  <title> 字符集和字符编码 | 阿瑞斯的BLOG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -280,7 +283,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/04/像程序员般思考/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/08/字符集和字符编码/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="aruisi">
@@ -304,7 +307,7 @@
             
             
               
-                像程序员般思考
+                字符集和字符编码
               
             
           </h1>
@@ -319,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-04T11:44:53+08:00">
-                2017-04-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-08T22:26:45+08:00">
+                2017-04-08
               </time>
             
 
@@ -355,28 +358,36 @@
       
 
       
-        <p>平常我们在学习的过程中,比如遇到一个新的术语,新的概念或者所有对于你来说都是未知的”新”东西,你下意识会选择怎么办?<br><a id="more"></a><br>我不知道你会怎么办?反正之前的我会先选择维基百科一下看看它是什么(What),然后映入眼前的是大篇幅官方描述,此时如果你有相关领域的经历或者经验(底蕴),很好,轻而易举地理解了它在表述什么,但是如果你之前没有接触过呢?想必看完也是一头雾水。<br>比如<code>socket</code>这个词,你搜词典,它上面的解释”插座,给…配插座”,当然更强大一点的词典,比如有道,它还有网络释义<code>套接字</code>,很好,词典很强大,和维基百科说的也是一样的。</p>
-<blockquote>
-<p>在计算机科学中，网络套接字（英语：Network socket），又译网络套接字、网络接口、网络插槽，是电脑网络中进程间数据流的端点。使用以网际协议（Internet Protocol）为通信基础的网络套接字，称为网际套接字（Internet socket）。因为网际协议的流行，现代绝大多数的网络套接字，都是属于网际套接字。<br>  socket是一种操作系统提供的进程间通信机制。[1]socket最初被翻译为把socket译为“媒介(字)”[2]。不久，ARPANET的socket就被翻译为“套接字”，其理由是：[3]</p>
+        <p>首先,在了解字符集和字符编码是什么之前先去看看为什么会有字符集和字符编码,它是为了解决什么问题?</p>
+<h2 id="字符集的产生"><a href="#字符集的产生" class="headerlink" title="字符集的产生"></a>字符集的产生</h2><p>我们平时在计算机屏幕上看到的文字内容并不是直接以文字的形式存储在计算机的存储介质中,计算机存储介质中存放的实际上是二进制的比特流。也就是说,不论你在计算机上看到的汉字,英文字母,日文等等,一旦存入计算机存储介质中,最终都是以010101010形式存放。那么如何确保拿出来转换的是汉字不是日文呢?显然,在这两者之间的转换就需要一个统一的规则,不然,当你把文档发给别人,别人的转换规则和你不一样,岂不是就出现乱码了?</p>
+<p>所以为了统一转换,字符集就诞生了。简单的说,字符集规定了某个文字对应的二进制数字存放方式(编码)和某串二进制数值代表了哪个文字(解码)的转换关系。</p>
+<p> <strong>“字符集”</strong>就像谍战片中的<strong>“译码本”</strong>一样,发电报时,大家发送的都是”滴答滴答”的原始信息,但是通过译码本,就可以转换成真实的字符。就像译码本一样,同样的原始信息经过不同的译码本翻译可能得到不同的结果;对于相同的一个字经过不同的译码本转换,翻译出的内容也不一样,这也就是为什么谍战片中大家都这么重视译码本。</p>
+<p>对于一个字符集来说要正确编码转码一个字符需要三个关键元素:字库表(character repertoire)、编码字符集(coded character set)、字符编码(character encoding form)。</p>
+<ul>
+<li>字库表<blockquote>
+<p>是一个相当于所有可读或者可现实字符的数据库,字库表决定了整个字符集能够展示的所有字符的范围。</p>
 </blockquote>
-<p>  通过这段话,我们得出了几个信息:</p>
-<ol>
-<li><strong>What:套接字</strong></li>
-<li><p><strong>Do:用于进程间通信</strong></p>
-<p>通过这些信息加上我们的”理解”看似已经达到了我们从无到有的认识过程。但这是不属于你的,因为这其实只是凭借着我们大脑的记忆能力强行地进行了一下复制粘贴。这样不牢固的东西是不稳的,就像天龙八部里的慕容复,看似武学渊博,什么都会,名头响亮。但其实他就像一个瓷器,当遇到真正的高手时,就暴露出了问题。因为他无一精通,没有自己的见解,都是照搬别人。但高手之间的对决,往往是变幻莫测的。这就好像我们的程序,完成需求是容易的,难得是维护和迭代。回到<code>socket</code>的问题上,既然是表示网络进程通信为什么不叫<strong>Web Communication</strong>,这样不更容易理解一下吗?诶,好像这么说也有道理啊,是不是此时感觉之前对socket的理解又动摇了呢?这就是知其然而不知其所以然带来的后果,其实我们真正在看到的一个”新”(可能对于你来说是)的问题时,应该建立这样一个思考问题的过程</p>
-<ol>
-<li>为什么会产生这个问题?因为这是人类社会,凡事不会凭空发生,肯定有原因。我觉得了解为什么是拨开神秘面纱的第一步。</li>
-<li>其次是How</li>
-<li>然后才是What</li>
-<li>最后再去建立和别的事物的联系,回头再思考下有什么不足</li>
-</ol>
 </li>
+<li>编码字符集<blockquote>
+<p>即用一个编码值code point来表示一个字符在字库中的位置。</p>
+</blockquote>
+</li>
+<li>字符编码<blockquote>
+<p>将编码字符集和实际存储数值之间的转换关系。一般来说都会直接将code point的值作为编码后的值直接存储(ASCII中)</p>
+</blockquote>
+</li>
+</ul>
+<p>这么看来,字库表和编码字符集看来是必不可少的,既然字库表已经有序号了那为什么不直接把序号作为存储内容呢?干嘛还要多此一举通过字符编码把序号转换成另一种存储格式呢?</p>
+<p>因为统一字库表的目的是为了能够涵盖世界上所有的字符,但实际使用的过程中呢,真正用到的字符占字库表的比例是非常低的。比如老美,他们仅仅可能仅仅只用到了ASCII中的128个字符,但是如果都以字库表中的序号来存储的话,原本ASCII中的一个字符只占一个字节,现在一个字符占了三个字节,这显然对他们很不友好。这个时候就出现了UTF-8这样的变成编码。在UTF-8编码中,原本只占一个字节的ASCII字符,仍然只占一个字节。</p>
+<h2 id="为什么会有Unicode字符集编码标准"><a href="#为什么会有Unicode字符集编码标准" class="headerlink" title="为什么会有Unicode字符集编码标准?"></a>为什么会有Unicode字符集编码标准?</h2><p>因为ASCII是美国人自己用的,ASCII开始普及之后,各国针对ASCII字符不够自己国家/地区使用,在ASCII上做了扩展,因为此,出现了同一个二进制编码表示不同编码的问题。解决了一个字节不够表示全球中所有符号的问题。</p>
+<h2 id="UTF-8和Unicode的关系"><a href="#UTF-8和Unicode的关系" class="headerlink" title="UTF-8和Unicode的关系"></a>UTF-8和Unicode的关系</h2><p>Unicode就是字符集编码，而UTF-8就是字符编码,就是Unicode规则字库的一种实现形式。unicode一个中文字符占2个字节，而UTF-8一个中文字符占3个字节)。从unicode到UTF-8并不是直接的对应，而是要过一些算法和规则来转换。UTF-8编码的实现方法，即UTF-8的物理存储和Unicode序号的转换关系。</p>
+<h2 id="为什么会出现乱码"><a href="#为什么会出现乱码" class="headerlink" title="为什么会出现乱码?"></a>为什么会出现乱码?</h2><p>编码和解码时使用了不同的字符集。对于字符”很屌”经过UTF-8编码后,它的十六进制表示E5BE88E5B18C这串数字,而我们显示的时候用GBK解码进行展示。(GBK的解码规则是:对于一个字节，如果它是小于127的，那么它就是一个英文单字节。而如果某个字节是大于127，就表示是一个汉字的开始.所以当时会有1个汉字2个英文字符的说法),此时GBK会把这串数字拆成 E5BE 88E5 B18C三组,每组两个字节,所以GBK解码后就成了寰堝睂三个字符。不仅和原来的完全不一样还多了一个。</p>
+<h2 id="出现乱码后如何识别原来的想要表达文字"><a href="#出现乱码后如何识别原来的想要表达文字" class="headerlink" title="出现乱码后如何识别原来的想要表达文字?"></a>出现乱码后如何识别原来的想要表达文字?</h2><ol>
+<li>编码(发现乱码的当前编码,转回二进制)</li>
+<li>切割(获取二进制字符串并按字节拆成字节数组)</li>
+<li>解码</li>
 </ol>
-<p>而对于高明的程序员来说,这其实就是他们的本能的思考和解决问题的行为。</p>
-<p>回到<code>socket</code>的产生上,直到我在知乎上看到一篇帖子<strong>“Socket为什么要翻译成套接字？”</strong>中<strong>陈振玥</strong>先生的回答才让我反思写下这篇博客记录下——面对于一个未知问题的思考方式。里面大致是这么说的:最早<code>“网络连接”</code>这个词对于那个时代还是一个新兴词汇。当时的网络连接对于大部分人来说是无法理解其含义的,所以作者为了解释清楚,才有了socket,原意想表达的就是建立网络连接就像插插座一样,一方去插,而另一方被插,这就是socket的由来。但是为什么后来变成了套接字呢?这其实更容易理解了,随着发展,大家理解了网络连接的过程,<code>“网络连接”</code>比起早期更复杂了,它被发扬光大了,所以基于这两种情况,插插座这种狭义理解已经不太符合它的定位了。</p>
-<pre><code>1. 人类认知的上升
-2. 职责的增大
-</code></pre><p>而应试教育和急于求成的心理或多或少地让我们变得浮躁,应试教育让我们的思想变得僵硬,你可以说你在做一道数学题的时候是有在思考问题,但是其实我觉得只能算一半。急于求成的心理往往使我们遇到问题直接询问或者查找如何解决,不加一点地思考,不追根溯源。</p>
+<h2 id="最后补充一下计算机中存的是二进制-但是常见的用十六进制表示而不用十进制-或者其他八进制"><a href="#最后补充一下计算机中存的是二进制-但是常见的用十六进制表示而不用十进制-或者其他八进制" class="headerlink" title="最后补充一下计算机中存的是二进制,但是常见的用十六进制表示而不用十进制?或者其他八进制?"></a>最后补充一下计算机中存的是二进制,但是常见的用十六进制表示而不用十进制?或者其他八进制?</h2><p>因为二进制过长的数字代码对于阅读带来不便,十进制和二进制没有指数型关系。十六进制简洁且和二进制成倍数关系,两个十六进制就可以表示8个二进制位也就是一个字节。</p>
 
       
     </div>
@@ -398,12 +409,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/思考问题的方式/" rel="tag"># 思考问题的方式</a>
-          
-        </div>
-      
 
       
         
@@ -413,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/30/第二篇博客/" rel="next" title="第二篇博客">
-                <i class="fa fa-chevron-left"></i> 第二篇博客
+              <a href="/2017/04/04/像程序员般思考/" rel="next" title="像程序员般思考">
+                <i class="fa fa-chevron-left"></i> 像程序员般思考
               </a>
             
           </div>
@@ -422,10 +427,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/08/字符集和字符编码/" rel="prev" title="字符集和字符编码">
-                字符集和字符编码 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -472,8 +473,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400"
@@ -535,6 +545,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符集的产生"><span class="nav-number">1.</span> <span class="nav-text">字符集的产生</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会有Unicode字符集编码标准"><span class="nav-number">2.</span> <span class="nav-text">为什么会有Unicode字符集编码标准?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UTF-8和Unicode的关系"><span class="nav-number">3.</span> <span class="nav-text">UTF-8和Unicode的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会出现乱码"><span class="nav-number">4.</span> <span class="nav-text">为什么会出现乱码?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#出现乱码后如何识别原来的想要表达文字"><span class="nav-number">5.</span> <span class="nav-text">出现乱码后如何识别原来的想要表达文字?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后补充一下计算机中存的是二进制-但是常见的用十六进制表示而不用十进制-或者其他八进制"><span class="nav-number">6.</span> <span class="nav-text">最后补充一下计算机中存的是二进制,但是常见的用十六进制表示而不用十进制?或者其他八进制?</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
