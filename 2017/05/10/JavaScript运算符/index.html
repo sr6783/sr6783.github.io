@@ -1,0 +1,903 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,运算符,优先级,结合性,运算顺序," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="javascript运算符
+也叫操作符，英文：operator，关于运算符，除了都知道的优先级，还要知道Associativity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript运算符">
+<meta property="og:url" content="http://yoursite.com/2017/05/10/JavaScript运算符/index.html">
+<meta property="og:site_name" content="阿瑞斯的BLOG">
+<meta property="og:description" content="javascript运算符
+也叫操作符，英文：operator，关于运算符，除了都知道的优先级，还要知道Associativity">
+<meta property="og:updated_time" content="2017-05-09T16:38:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript运算符">
+<meta name="twitter:description" content="javascript运算符
+也叫操作符，英文：operator，关于运算符，除了都知道的优先级，还要知道Associativity">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/10/JavaScript运算符/"/>
+
+
+
+
+
+  <title> JavaScript运算符 | 阿瑞斯的BLOG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">阿瑞斯的BLOG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">一个不一样的开始</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/10/JavaScript运算符/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="aruisi">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="阿瑞斯的BLOG">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="阿瑞斯的BLOG" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript运算符
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-10T00:36:22+08:00">
+                2017-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="javascript运算符"><a href="#javascript运算符" class="headerlink" title="javascript运算符"></a>javascript运算符</h1><blockquote>
+<p>也叫操作符，英文：operator，关于运算符，除了都知道的优先级，还要知道Associativity</p>
+</blockquote>
+<a id="more"></a>
+<p>javascript中的运算符大多由标点符号表示，少数由关键字表示，每一个运算符具有不同的行为，运算符始终都遵循着一些固定语法。一些运算符可以作用于任何数据类型， <strong>但仍然希望它们的操作数是指定类型的数据</strong>，并且大多数运算符返回一个特定类型的值，在下面的运算符规则表中，箭头前为运算符操作数的类型，箭头后为运算结果的类型</p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><blockquote>
+<p>javascript的运算符总共有59个，如果根据其操作数的个数进行分类，分为一元运算符，二元运算符，三元运算符。按<br>而它们的目的都是一致的: 将一个到多个表达式合并为一个表达式</p>
+</blockquote>
+<h2 id="优先级和结合性"><a href="#优先级和结合性" class="headerlink" title="优先级和结合性"></a>优先级和结合性</h2><p> <s>运算符优先级控制着运算符的执行顺序，优先级高的运算符的执行总是先于优先级运算符低的运算符——————错误的理解</s></p>
+<blockquote>
+<p>修正：<br>运算符优先级决定了操作数的结合，优先级高的运算符的结合总是先于优先级低的运算符——————</p>
+</blockquote>
+<p>对优先级错误的理解：</p>
+<p> 认为拿到一行语句，先按照操作符的优先级划分，找到最高优先级的操作符，先求值。</p>
+<p> 所以就对 baz &amp;&amp; fn()这样的代码存在困惑，因为如果这么理解的话，fn()的优先级最高，那么无论如何都会先执行 fn() 再去 &amp;&amp; 判断，可实际的是 &amp;&amp;判断前面的baz是否存在而决定是否执行后面的fn()，此时发生冲突，但实际上所谓的优先级是指<font color="red"><strong>结合的优先级，优先结合</strong></font>。即同一个操作数被左右两个操作符共同使用的时候，此时这个操作数并不会被两个操作符共同使用，而决定它被谁使用（也就是哪一个操作符来结合这个操作数）的依据就是操作符的优先级。不是说谁的优先级高就先给谁求值。</p>
+<p> 那么何时求值？比如 d = a + (b+c)</p>
+<p>要得到d的值，首先对表达式a求值，返回；然后要对 + 后的一个表达式求值，此时 + 后面的表达式结果依赖于<code>b + c</code>，此时<code>b + c</code>才开始求值，因为最终的结果依赖<code>b + c</code> 的结果，所以才有了求值。</p>
+<p>所以像短路运算符 <code>&amp;&amp;</code> 和 <code>||</code> 一起出现的时候，因为<code>&amp;&amp;</code>的优先级要比<code>||</code>高，所以<font color="red"><strong>&amp;&amp;优先结合操作数</strong></font>（但是并不意味着要立即求值，还是要根据从左往右的顺序，先对第一个操作数求值。剩下的，有依赖有需求才会求值。</p>
+<p> 所以<strong>千万不要再理解成优先级高，优先求值</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">fn01() || fn02 &amp;&amp; fn03();</div><div class="line">//等价于</div><div class="line">fn01() || (fn02 &amp;&amp; fn03()); // &amp;&amp; 优先级高于 || fn02结合&amp;&amp;</div><div class="line"></div><div class="line">简单的例子：</div><div class="line">1 + 2 * 3 === 1 + (2 * 3)</div></pre></td></tr></table></figure>
+<h3 id="什么情况下会体现出优先级？"><a href="#什么情况下会体现出优先级？" class="headerlink" title="什么情况下会体现出优先级？"></a>什么情况下会体现出优先级？</h3><blockquote>
+<p>显然是同一个语句中出现多个运算符，而想要知道结果就需要了解超过一个运算符时表达式的执行顺序。(operator precedence)</p>
+</blockquote>
+<h2 id="Associativity（结合性）"><a href="#Associativity（结合性）" class="headerlink" title="Associativity（结合性）"></a>Associativity（结合性）</h2><blockquote>
+<p>If the operators all have the same precedence, then the order of evaluation depends on their associativity.</p>
+<p>如果所有操作符优先级一样，那么求值顺序就取决于它们的 结合性。</p>
+</blockquote>
+<p>除了优先级，你更要关注一个结合性，什么情况下会出现结合性？</p>
+<p><strong>当有多种优先级相同的运算符参与运算的时候</strong></p>
+<p>因为这样，所以，如果没有两个相同优先级的运算，就不存在考虑结合性的问题了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a OP b OP c</div></pre></td></tr></table></figure>
+<p>左结合性（从左到右）意味着它被处理为(a OP b) OP c，而右结合性（从右到左）意味着它被解释为a OP (b OP c)。而对于以下代码右结合性是正确的，所以你可以写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a = b = 5;</div><div class="line"></div><div class="line">//首先，b设置为5.然后a也设置为5</div><div class="line">//等价于</div><div class="line">a = (b = 5);</div></pre></td></tr></table></figure>
+<p>那么：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a?b:c?d:e</div><div class="line"><span class="comment">//等价于</span></div><div class="line">(a?b:(c?d:e))</div></pre></td></tr></table></figure>
+<p>这个要怎么算？先看优先级，两个一样。再看结合性，右结合，所以：<br>先算c?d:e<br>再算 a?b:（c?d:e） 这就是所谓右结合。如果是左结合的话 就是先算a?b:c<br>再算 （a?b:c）?d:e<br>实际上，一般结合性的问题都可以用括号来解决。</p>
+<p><strong>先要考虑优先级，有相同优先级的就看结合性以决定运算顺序。结合性决定处理相同优先级的运算符的顺序</strong></p>
+<h3 id="为什么会有结合性？或者说为什么结合性不同影响着执行顺序？？？"><a href="#为什么会有结合性？或者说为什么结合性不同影响着执行顺序？？？" class="headerlink" title="为什么会有结合性？或者说为什么结合性不同影响着执行顺序？？？"></a>为什么会有结合性？或者说为什么结合性不同影响着执行顺序？？？</h3><p><strong>因为表达式可能会产生副作用，比如函数调用:</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = foo() &amp;&amp; bar();</div></pre></td></tr></table></figure>
+<p>这里foo()会首先执行，它的返回结果决定了bar()是否执行。所以如果bar(）在foo（）之前执行，整个结果完全不同。</p>
+<h3 id="如何更好理解操作符的结合性？？？"><a href="#如何更好理解操作符的结合性？？？" class="headerlink" title="如何更好理解操作符的结合性？？？"></a>如何更好理解操作符的结合性？？？</h3><blockquote>
+<p>想象一下，什么情况下 AB 不等于 BA</p>
+<p>矩阵（不考虑单位矩阵的情况下）</p>
+</blockquote>
+<h2 id="运算顺序"><a href="#运算顺序" class="headerlink" title="运算顺序"></a>运算顺序</h2><p>运算符的操作数是一个表达式，运算符的优先级决定了操作数被优先级更高的运算符结合，运算符的结合性解决了相同优先级的运算符的求值顺序。<br>参考</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var a=1;</div><div class="line">b=(a=3)+a++;</div><div class="line"></div><div class="line"></div><div class="line">这个例子中运算顺序是这样的</div><div class="line"></div><div class="line">1.计算b</div><div class="line">2.a＝3</div><div class="line">3.a++(设为c)</div><div class="line">4.计算a（这时候a变成了4已经，不是再最后才变得，但表达式使用的是a++的结果c，也就是a原来的值）</div><div class="line">5.计算3+c</div><div class="line">6.把3+c赋值给b</div><div class="line"></div><div class="line">     =</div><div class="line">   /     \</div><div class="line">  b       +</div><div class="line">        /   \</div><div class="line">       =      ++</div><div class="line">	  /  \	   /  </div><div class="line">	 a    3  a</div></pre></td></tr></table></figure>
+<h2 id="什么是左值-Left-hand-side-expressions"><a href="#什么是左值-Left-hand-side-expressions" class="headerlink" title="什么是左值(Left-hand-side expressions)"></a>什么是左值(Left-hand-side expressions)</h2><blockquote>
+<p>Left values are the destination of an assignment.</p>
+<p>左值指的是赋值操作的目标，也就是能出现在赋值表达式左边的表达式，自定义的函数不能返回左值是ECMAScript的规范。</p>
+</blockquote>
+<h3 id="那么什么类型的值可以出现在赋值表达式的左侧呢？"><a href="#那么什么类型的值可以出现在赋值表达式的左侧呢？" class="headerlink" title="那么什么类型的值可以出现在赋值表达式的左侧呢？"></a>那么什么类型的值可以出现在赋值表达式的左侧呢？</h3><p>变量<br>对象属性<br>数组元素</p>
+<h3 id="运算符总结（持续更新）"><a href="#运算符总结（持续更新）" class="headerlink" title="运算符总结（持续更新）"></a>运算符总结（持续更新）</h3><table><br>  <thead><br>    <caption>运算符总结</caption><br>    <th>优先级</th><br>    <th>运算符</th><br>    <th>操作</th><br>    <th>结合性</th><br>    <th>类型</th><br>  </thead><br><br><tbody><br>  <tr><br>    <td>20</td><br>    <td> ( … ) </td><br>    <td>分组</td><br>    <td>N/A</td><br>    <td>N/A</td><br>  </tr><br><br>  <tr><br>    <td>19</td><br>    <td> … . … </td><br>    <td>成员访问</td><br>    <td>l-to-r</td><br>    <td></td><br>  </tr><br><br>  <tr><br>    <td>19</td><br>    <td>… [ … ] </td><br>    <td>成员访问</td><br>    <td>l-to-r</td><br>    <td>N/A</td><br>  </tr><br><br>  <tr><br>    <td>19</td><br>    <td>new … ( … ) </td><br>    <td>有参构造</td><br>    <td>N/A</td><br>    <td>N/A</td><br>  </tr><br><br>    <tr><br>    <td>18</td><br>    <td>… ( … )  </td><br>    <td>函数调用</td><br>    <td>l-to-r</td><br>    <td>N/A</td><br>  </tr><br><br>  <tr><br>    <td>18</td><br>    <td>new …     </td><br>    <td>new.target操作符检测是否用new操作符调用函数/构造函数</td><br>    <td>r-to-l</td><br>    <td>new.target=&gt;undefined/<br>    在类构造函数中，new.target指的是直接调用的构造函数new。</td><br>  </tr><br><br>  <tr><br>    <td>17</td><br>    <td>… ++</td><br>    <td>后自增</td><br>    <td>N/A</td><br>    <td>N/A</td><br>  </tr><br><br>  <tr><br>    <td>17</td><br>    <td>… –</td><br>    <td>后自减</td><br>    <td>N/A</td><br>    <td>N/A</td><br>  </tr><br><br>  <tr><br>    <td>16</td><br>    <td>! …</td><br>    <td>逻辑非</td><br>    <td>r-to-l</td><br>    <td>bool-&gt;bool</td><br>  </tr><br><br>  <tr><br>    <td>16</td><br>    <td>~ …</td><br>    <td>按位求反</td><br>    <td>r-to-l</td><br>    <td></td><br>  </tr><br><br>  <tr><br>    <td>16</td><br>    <td>+ …</td><br>    <td>一元加(注意区别于二元加)</td><br>    <td>r-to-l</td><br>    <td>any=&gt;num</td><br>  </tr><br><br>  <tr><br>    <td>16</td><br>    <td>- …</td><br>    <td>一元减(注意区别于二元减)</td><br>    <td>r-to-l</td><br>    <td>any=&gt;num</td><br>  </tr><br><br>  <tr><br>    <td>16</td><br>    <td>++ …</td><br>    <td>先自增</td><br>    <td>r-to-l</td><br>    <td>属于算术运算符，操作lval</td><br>  </tr><br><br>  <tr><br>    <td>16</td><br>    <td>– …</td><br>    <td>先自减</td><br>    <td>r-to-l</td><br>    <td>属于算术运算符，操作lval</td><br>  </tr><br><br>  <tr><br>    <td>16</td><br>    <td>typeof …</td><br>    <td>判断类型</td><br>    <td>r-to-l</td><br>    <td>any=&gt;str</td><br>  </tr><br><br>  <tr><br>    <td>16</td><br>    <td>void …</td><br>    <td>返回空</td><br>    <td>r-to-l</td><br>    <td>any=&gt;undefined</td><br>  </tr><br><br>  <tr><br>    <td>16</td><br>    <td>delete …</td><br>    <td>删除属性</td><br>    <td>r-to-l</td><br>    <td>lval-&gt;bool</td><br>  </tr><br><br>  <tr><br>    <td>15</td><br>    <td>… <strong> …</strong></td><br>    <td>幂运算</td><br>    <td>r-to-l</td><br>    <td>any,any=&gt;num，求幂前会发生类型转换num</td><br>  </tr><br><br>  <tr><br>    <td>14</td><br>    <td>… * …</td><br>    <td>求积</td><br>    <td>l-to-r</td><br>    <td>any,any=&gt;num，求积前会发生类型转换num</td><br>  </tr><br><br>  <tr><br>    <td>14</td><br>    <td>… / …</td><br>    <td>求商</td><br>    <td>l-to-r</td><br>    <td>any,any=&gt;num，求商前会发生类型转换num</td><br>  </tr><br><br>  <tr><br>    <td>14</td><br>    <td>… % …</td><br>    <td>取余</td><br>    <td>l-to-r</td><br>    <td>any,any=&gt;num，求商前会发生类型转换num</td><br>  </tr><br><br>  <tr><br>    <td>13</td><br>    <td>… + …</td><br>    <td>求和/拼接(考虑类型转换)</td><br>    <td>l-to-r</td><br>    <td>any,any=&gt;any</td><br>  </tr><br><br>  <tr><br>    <td>13</td><br>    <td>… - …</td><br>    <td>求差(考虑隐式转换）</td><br>    <td>l-to-r</td><br>    <td>any,any=&gt;num</td><br>  </tr><br><br>  <tr><br>    <td>12</td><br>    <td>… &lt;&lt; …</td><br>    <td>按位左移</td><br>    <td>l-to-r</td><br>    <td></td><br>  </tr><br><br>  <tr><br>    <td>12</td><br>    <td>… &gt;&gt; …</td><br>    <td>按位右移</td><br>    <td>l-to-r</td><br>    <td></td><br>  </tr><br><br>  <tr><br>    <td>12</td><br>    <td>… &gt;&gt;&gt; …</td><br>    <td>无符号右移</td><br>    <td>l-to-r</td><br>    <td></td><br>  </tr><br><br>  <tr><br>    <td>11</td><br>    <td>… &lt; …</td><br>    <td>小于(会发生隐式转换）</td><br>    <td>l-to-r</td><br>    <td>any,any=&gt;bool</td><br>  </tr><br><br>  <tr><br>    <td>11</td><br>    <td>… &lt;= …</td><br>    <td>小于等于(会发生隐式转换）</td><br>    <td>l-to-r</td><br>    <td>any,any=&gt;bool</td><br>  </tr><br><br>  <tr><br>    <td>11</td><br>    <td>… &gt; …</td><br>    <td>大于(会发生隐式转换）</td><br>    <td>l-to-r</td><br>    <td>any,any=&gt;bool</td><br>  </tr><br><br>  <tr><br>    <td>11</td><br>    <td>… &gt;= …</td><br>    <td>大于等于(会发生隐式转换）</td><br>    <td>l-to-r</td><br>    <td>any,any=&gt;bool</td><br>  </tr><br><br>  <tr><br>    <td>11</td><br>    <td>… in …</td><br>    <td>测试属性</td><br>    <td>l-to-r</td><br>    <td>str,obj=&gt;bool</td><br>  </tr><br><br>  <tr><br>    <td>11</td><br>    <td>… instanceof …</td><br>    <td>测试对象类(含原型链)</td><br>    <td>l-to-r</td><br>    <td>obj,fn=&gt;bool</td><br>  </tr><br><br>  <tr><br>    <td>10</td><br>    <td>… == …</td><br>    <td>测试相等</td><br>    <td>l-to-r</td><br>    <td>any,any=&gt;bool</td><br>  </tr><br><br>  <tr><br>    <td>10</td><br>    <td>… != …</td><br>    <td>测试不等</td><br>    <td>l-to-r</td><br>    <td>any,any=&gt;bool</td><br>  </tr><br><br>  <tr><br>    <td>10</td><br>    <td>… === …</td><br>    <td>测试严等</td><br>    <td>l-to-r</td><br>    <td>any,any=&gt;bool</td><br>  </tr><br><br>  <tr><br>    <td>10</td><br>    <td>… !== …</td><br>    <td>测试严不等</td><br>    <td>l-to-r</td><br>    <td>any,any=&gt;bool</td><br>  </tr><br><br>  <tr><br>    <td>9</td><br>    <td>… &amp; …</td><br>    <td>按位与</td><br>    <td>l-to-r</td><br>    <td></td><br>  </tr><br><br>  <tr><br>    <td>8</td><br>    <td>… ^ …</td><br>    <td>按位非</td><br>    <td>l-to-r</td><br>    <td></td><br>  </tr><br><br><br><br>  <tr><br>    <td>7</td><br>    <td>… | …</td><br>    <td>按位或</td><br>    <td>l-to-r</td><br>    <td></td><br>  </tr><br><br>   <tr><br>    <td>6</td><br>    <td>… &amp;&amp; …</td><br>    <td>逻辑与（操作数选择器）</td><br>    <td>l-to-r</td><br>    <td>any,any=&gt;any</td><br>  </tr><br><br>  <tr><br>    <td>5</td><br>    <td>… || …</td><br>    <td>逻辑或（操作数选择器）</td><br>    <td>l-to-r</td><br>    <td>any,any=&gt;any</td><br>  </tr><br><br>  <tr><br>    <td>4</td><br>    <td>… ? … : …</td><br>    <td>三元表达式</td><br>    <td>r-to-l</td><br>    <td>bool,any,any=&gt;any</td><br>  </tr><br><br>  <tr><br>    <td>3</td><br>    <td>… = … </td><br>    <td>运算且赋值</td><br>    <td>r-to-l</td><br>    <td>lval,any=&gt;any</td><br>  </tr><br><br>  <tr><br>    <td>3</td><br>    <td>… += … </td><br>    <td>运算且赋值</td><br>    <td>r-to-l</td><br>    <td>lval,any=&gt;any</td><br>  </tr><br><br>  <tr><br>    <td>3</td><br>    <td>… -= … </td><br>    <td>运算且赋值</td><br>    <td>r-to-l</td><br>    <td>lval,any=&gt;any</td><br>  </tr><br><br>  <tr><br>    <td>3</td><br>    <td>… = … </td><br>    <td>运算且赋值</td><br>    <td>r-to-l</td><br>    <td>lval,any=&gt;any</td><br>  </tr><br><br>  <tr><br>    <td>3</td><br>    <td>… <em>= … </em></td><br>    <td>运算且赋值</td><br>    <td>r-to-l</td><br>    <td>lval,any=&gt;any</td><br>  </tr><br><br>  <tr><br>    <td>3</td><br>    <td>… /= … </td><br>    <td>运算且赋值</td><br>    <td>r-to-l</td><br>    <td>lval,any=&gt;any</td><br>  </tr><br><br>  <tr><br>    <td>3</td><br>    <td>… %= … </td><br>    <td>运算且赋值</td><br>    <td>r-to-l</td><br>    <td>lval,any=&gt;any</td><br>  </tr><br><br>  <tr><br>    <td>3</td><br>    <td>… &lt;&lt;= … </td><br>    <td>运算且赋值</td><br>    <td>r-to-l</td><br>    <td>lval,any=&gt;any</td><br>  </tr><br><br>  <tr><br>    <td>3</td><br>    <td>… &gt;&gt;= … </td><br>    <td>运算且赋值</td><br>    <td>r-to-l</td><br>    <td>lval,any=&gt;any</td><br>  </tr><br><br>  <tr><br>    <td>3</td><br>    <td>… &gt;&gt;&gt;= … </td><br>    <td>运算且赋值</td><br>    <td>r-to-l</td><br>    <td>lval,any=&gt;any</td><br>  </tr><br><br>  <tr><br>    <td>3</td><br>    <td>… &amp;= … </td><br>    <td>运算且赋值</td><br>    <td>r-to-l</td><br>    <td>lval,any=&gt;any</td><br>  </tr><br><br>   <tr><br>    <td>3</td><br>    <td>… ^= … </td><br>    <td>运算且赋值</td><br>    <td>r-to-l</td><br>    <td>lval,any=&gt;any</td><br>  </tr><br><br>   <tr><br>    <td>3</td><br>    <td>… |= … </td><br>    <td>运算且赋值</td><br>    <td>r-to-l</td><br>    <td>lval,any=&gt;any</td><br>  </tr><br><br>   <tr><br>    <td>2</td><br>    <td>yield … </td><br>    <td>暂停当前gen函数执行，返回表达式的值给gen函数的调用者</td><br>    <td>r-to-l</td><br>    <td>any=&gt;any</td><br>  </tr><br><br>   <tr><br>    <td>2</td><br>    <td>yield … </td><br>    <td>用于在一个gen函数中调用另一个gen函数</td><br>    <td>r-to-l</td><br>    <td>AnoFn*()=&gt;any</td><br>  </tr><br><br>   <tr><br>    <td>1</td><br>    <td>… … </td><br>    <td>展开运算符</td><br>    <td>r-to-l</td><br>    <td>array=&gt;any</td><br>  </tr><br><br>   <tr><br>    <td>0</td><br>    <td>, … </td><br>    <td>忽略第一个操作数，返回第二个操作数</td><br>    <td>r-to-l</td><br>    <td>any,any=&gt;any</td><br>  </tr><br><br></tbody><br></table>
+
+<p>注：</p>
+<p>l-to-r : left-to-right  左结合</p>
+<p>r-to-l : right-to-left 右结合</p>
+<p>lval : leftValue 左值</p>
+<p>in右侧必须是一个对象。例如，您可以指定使用String构造函数创建的字符串，但不能指定字符串文字。in操作符会检测原型链上的属性。使用delete操作符删除属性，则操作in员返回false该属性。如果将属性设置为undefined但不将其删除，则in该属性的操作符返回true。</p>
+<p>instanceof操作符会检测原型链。</p>
+<p>关于–,++操作符报错<font color="red">“ReferenceError: Invalid left-hand side expression in postfix operation” </font>，这里报的是引用错误，其实想想应该可以这么理解因为++ 和 –操作符不能直接操作值类型，因为不管是先自增/自减。还是后自增/自减，总要返回值。那么值往哪返？-&gt;肯定需要一个容器，这个容器就是左值.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ++ --操作符对操作数有要求吗？是不是只能操作左值?</span></div><div class="line"><span class="comment">//Invalid left-hand side expression in postfix operation</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> str = <span class="string">'abc'</span>;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(str++); <span class="comment">// NaN 说明可以操作字符串</span></div><div class="line"></div><div class="line"><span class="comment">//console.log(5++);//ReferenceError: Invalid left-hand side expression in postfix operation 说明不能直接操作值</span></div><div class="line"></div><div class="line"><span class="comment">//引用错误：出现这个的原因是因为++ 和 --操作符不能直接操作值类型，因为不管是先自增/自减。还是后自增/自减，总要返回值。那么值往哪放？-&gt;需要一个容器 （因为值是不可变的)</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> o = &#123;&#125;;</div><div class="line"><span class="built_in">console</span>.log(o++); <span class="comment">// NaN 说明可以操作对象</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> b;</div><div class="line"><span class="built_in">console</span>.log(b++);  <span class="comment">//NaN 说明操作数对于undefined也可以接受</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = <span class="literal">null</span>;</div><div class="line"><span class="built_in">console</span>.log(obj++); <span class="comment">//0 ???why 为什么null会转换成0？</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> boolF = <span class="literal">false</span>;</div><div class="line"><span class="built_in">console</span>.log(boolF++); <span class="comment">//0 ???why</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> boolT = <span class="literal">true</span>;</div><div class="line"><span class="built_in">console</span>.log(boolT++); <span class="comment">//1 ???why</span></div></pre></td></tr></table></figure>
+<p>##操作符对数据做了什么？？？</p>
+<p>关注类型转换</p>
+<p>参考来源：</p>
+<p><a href="https://www.zhihu.com/question/52116922" target="_blank" rel="external">知乎：JavaScript中运算符优先级的问题？</a>@RednaxelaFX</p>
+<p><a href="http://rednaxelafx.iteye.com/blog/492667" target="_blank" rel="external">解释器，树遍历解释器，表达式的求值顺序</a>@RednaxelaFX</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield*" target="_blank" rel="external">JavaScript yield*操作符</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator" target="_blank" rel="external">JavaScript 展开运算符</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters" target="_blank" rel="external">JavaScript剩余参数</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/运算符/" rel="tag"># 运算符</a>
+          
+            <a href="/tags/优先级/" rel="tag"># 优先级</a>
+          
+            <a href="/tags/结合性/" rel="tag"># 结合性</a>
+          
+            <a href="/tags/运算顺序/" rel="tag"># 运算顺序</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/07/如何避免JavaScript中的冲突/" rel="next" title="如何避免JavaScript中的冲突">
+                <i class="fa fa-chevron-left"></i> 如何避免JavaScript中的冲突
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400"
+               alt="aruisi" />
+          <p class="site-author-name" itemprop="name">aruisi</p>
+           
+              <p class="site-description motion-element" itemprop="description">欢迎来到我的个人站</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sr6783" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#javascript运算符"><span class="nav-number">1.</span> <span class="nav-text">javascript运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分类"><span class="nav-number">1.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优先级和结合性"><span class="nav-number">1.2.</span> <span class="nav-text">优先级和结合性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么情况下会体现出优先级？"><span class="nav-number">1.2.1.</span> <span class="nav-text">什么情况下会体现出优先级？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Associativity（结合性）"><span class="nav-number">1.3.</span> <span class="nav-text">Associativity（结合性）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么会有结合性？或者说为什么结合性不同影响着执行顺序？？？"><span class="nav-number">1.3.1.</span> <span class="nav-text">为什么会有结合性？或者说为什么结合性不同影响着执行顺序？？？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何更好理解操作符的结合性？？？"><span class="nav-number">1.3.2.</span> <span class="nav-text">如何更好理解操作符的结合性？？？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算顺序"><span class="nav-number">1.4.</span> <span class="nav-text">运算顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是左值-Left-hand-side-expressions"><span class="nav-number">1.5.</span> <span class="nav-text">什么是左值(Left-hand-side expressions)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#那么什么类型的值可以出现在赋值表达式的左侧呢？"><span class="nav-number">1.5.1.</span> <span class="nav-text">那么什么类型的值可以出现在赋值表达式的左侧呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符总结（持续更新）"><span class="nav-number">1.5.2.</span> <span class="nav-text">运算符总结（持续更新）</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aruisi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
