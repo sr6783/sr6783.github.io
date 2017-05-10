@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JavaScript,运算符,优先级,结合性,运算顺序," />
+  <meta name="keywords" content="JavaScript,运算符,优先级,结合性,执行顺序,求值顺序," />
 
 
 
@@ -87,19 +87,16 @@
 
 
 
-<meta name="description" content="javascript运算符
-也叫操作符，英文：operator，关于运算符，除了都知道的优先级，还要知道Associativity">
+<meta name="description" content="相关关键词 表达式 优先级 结合性 执行顺序 求值顺序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript运算符">
 <meta property="og:url" content="http://yoursite.com/2017/05/10/JavaScript运算符/index.html">
 <meta property="og:site_name" content="阿瑞斯的BLOG">
-<meta property="og:description" content="javascript运算符
-也叫操作符，英文：operator，关于运算符，除了都知道的优先级，还要知道Associativity">
-<meta property="og:updated_time" content="2017-05-09T20:33:02.000Z">
+<meta property="og:description" content="相关关键词 表达式 优先级 结合性 执行顺序 求值顺序">
+<meta property="og:updated_time" content="2017-05-10T06:31:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript运算符">
-<meta name="twitter:description" content="javascript运算符
-也叫操作符，英文：operator，关于运算符，除了都知道的优先级，还要知道Associativity">
+<meta name="twitter:description" content="相关关键词 表达式 优先级 结合性 执行顺序 求值顺序">
 
 
 
@@ -358,9 +355,11 @@
       
 
       
-        <h1 id="javascript运算符"><a href="#javascript运算符" class="headerlink" title="javascript运算符"></a>javascript运算符</h1><blockquote>
-<p>也叫操作符，英文：operator，关于运算符，除了都知道的优先级，还要知道Associativity<br><a id="more"></a><br>javascript中的运算符大多由标点符号表示，少数由关键字表示，每一个运算符具有不同的行为，运算符始终都遵循着一些固定语法。一些运算符可以作用于任何数据类型， <strong>但仍然希望它们的操作数是指定类型的数据</strong>，并且大多数运算符返回一个特定类型的值，在下面的运算符规则表中，箭头前为运算符操作数的类型，箭头后为运算结果的类型</p>
+        <h3 id="相关关键词"><a href="#相关关键词" class="headerlink" title="相关关键词"></a>相关关键词</h3><p> <strong>表达式 优先级 结合性 执行顺序 求值顺序</strong><br><a id="more"></a></p>
+<h1 id="javascript运算符"><a href="#javascript运算符" class="headerlink" title="javascript运算符"></a>javascript运算符</h1><blockquote>
+<p>也叫操作符，英文：operator，关于运算符，除了都知道的优先级，还要知道Associativity</p>
 </blockquote>
+<p>javascript中的运算符大多由标点符号表示，少数由关键字表示，每一个运算符具有不同的行为，运算符始终都遵循着一些固定语法。一些运算符可以作用于任何数据类型， <strong>但仍然希望它们的操作数是指定类型的数据</strong>，并且大多数运算符返回一个特定类型的值，在下面的运算符规则表中，箭头前为运算符操作数的类型，箭头后为运算结果的类型</p>
 <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><blockquote>
 <p>javascript的运算符总共有59个，如果根据其操作数的个数进行分类，分为一元运算符，二元运算符，三元运算符。而它们的目的都是一致的: 将一个到多个表达式合并为一个表达式</p>
 </blockquote>
@@ -412,9 +411,13 @@
 <p>矩阵（不考虑单位矩阵的情况下）</p>
 </blockquote>
 <h2 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h2><blockquote>
-<p>执行顺序是不变的，总是从左到右。优先级和结合性并没有影响代码的执行顺序，也无法影响，它们能做的事仅仅可能会让最终的执行结果发生改变。<br>参考</p>
+<p>执行顺序是不变的，总是从左到右。优先级和结合性并没有影响代码的执行顺序，也无法影响，它们做的是改变了表达式的求值顺序，注意 执行顺序 != 求值顺序</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var a=1;</div><div class="line">b=(a=3)+a++;</div><div class="line"></div><div class="line"></div><div class="line">这个例子中运算顺序是这样的</div><div class="line"></div><div class="line">1.计算b</div><div class="line">2.a＝3</div><div class="line">3.a++(设为c)</div><div class="line">4.计算a（这时候a变成了4已经，不是再最后才变得，但表达式使用的是a++的结果c，也就是a原来的值）</div><div class="line">5.计算3+c</div><div class="line">6.把3+c赋值给b</div><div class="line"></div><div class="line">     =</div><div class="line">   /     \</div><div class="line">  b       +</div><div class="line">        /   \</div><div class="line">       =      ++</div><div class="line">	  /  \	   /  </div><div class="line">	 a    3  a</div></pre></td></tr></table></figure>
+<h2 id="深入浅出优先级，结合性，执行顺序，求值顺序"><a href="#深入浅出优先级，结合性，执行顺序，求值顺序" class="headerlink" title="深入浅出优先级，结合性，执行顺序，求值顺序"></a>深入浅出优先级，结合性，执行顺序，求值顺序</h2><blockquote>
+<p>代码执行顺序是永远不变的，从左往右执行。</p>
+<p>而优先级和结合性是如何添加括号的依据，表达式越先求值的说明离AST根节点越远，为什么？先求值的说明依赖少，有依赖的还得继续向下遍历。</p>
+</blockquote>
 <h2 id="什么是左值-Left-hand-side-expressions"><a href="#什么是左值-Left-hand-side-expressions" class="headerlink" title="什么是左值(Left-hand-side expressions)"></a>什么是左值(Left-hand-side expressions)</h2><blockquote>
 <p>Left values are the destination of an assignment.</p>
 <p>左值指的是赋值操作的目标，也就是能出现在赋值表达式左边的表达式，自定义的函数不能返回左值是ECMAScript的规范。</p>
@@ -469,7 +472,9 @@
           
             <a href="/tags/结合性/" rel="tag"># 结合性</a>
           
-            <a href="/tags/运算顺序/" rel="tag"># 运算顺序</a>
+            <a href="/tags/执行顺序/" rel="tag"># 执行顺序</a>
+          
+            <a href="/tags/求值顺序/" rel="tag"># 求值顺序</a>
           
         </div>
       
@@ -573,7 +578,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -619,7 +624,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#javascript运算符"><span class="nav-number">1.</span> <span class="nav-text">javascript运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分类"><span class="nav-number">1.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优先级和结合性"><span class="nav-number">1.2.</span> <span class="nav-text">优先级和结合性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优先级是怎么产生的？"><span class="nav-number">1.2.1.</span> <span class="nav-text">优先级是怎么产生的？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Associativity（结合性）"><span class="nav-number">1.3.</span> <span class="nav-text">Associativity（结合性）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结合性是怎么起作用的？"><span class="nav-number">1.3.1.</span> <span class="nav-text">结合性是怎么起作用的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结合性解决了什么问题？"><span class="nav-number">1.3.2.</span> <span class="nav-text">结合性解决了什么问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何更好理解操作符的结合性？？？"><span class="nav-number">1.3.3.</span> <span class="nav-text">如何更好理解操作符的结合性？？？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行顺序"><span class="nav-number">1.4.</span> <span class="nav-text">执行顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是左值-Left-hand-side-expressions"><span class="nav-number">1.5.</span> <span class="nav-text">什么是左值(Left-hand-side expressions)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#那么什么类型的值可以出现在赋值表达式的左侧呢？"><span class="nav-number">1.5.1.</span> <span class="nav-text">那么什么类型的值可以出现在赋值表达式的左侧呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符总结（持续更新）"><span class="nav-number">1.5.2.</span> <span class="nav-text">运算符总结（持续更新）</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关关键词"><span class="nav-number">1.</span> <span class="nav-text">相关关键词</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#javascript运算符"><span class="nav-number"></span> <span class="nav-text">javascript运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分类"><span class="nav-number"></span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优先级和结合性"><span class="nav-number"></span> <span class="nav-text">优先级和结合性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优先级是怎么产生的？"><span class="nav-number">1.</span> <span class="nav-text">优先级是怎么产生的？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Associativity（结合性）"><span class="nav-number"></span> <span class="nav-text">Associativity（结合性）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结合性是怎么起作用的？"><span class="nav-number">1.</span> <span class="nav-text">结合性是怎么起作用的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结合性解决了什么问题？"><span class="nav-number">2.</span> <span class="nav-text">结合性解决了什么问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何更好理解操作符的结合性？？？"><span class="nav-number">3.</span> <span class="nav-text">如何更好理解操作符的结合性？？？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行顺序"><span class="nav-number"></span> <span class="nav-text">执行顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深入浅出优先级，结合性，执行顺序，求值顺序"><span class="nav-number"></span> <span class="nav-text">深入浅出优先级，结合性，执行顺序，求值顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是左值-Left-hand-side-expressions"><span class="nav-number"></span> <span class="nav-text">什么是左值(Left-hand-side expressions)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#那么什么类型的值可以出现在赋值表达式的左侧呢？"><span class="nav-number">1.</span> <span class="nav-text">那么什么类型的值可以出现在赋值表达式的左侧呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符总结（持续更新）"><span class="nav-number">2.</span> <span class="nav-text">运算符总结（持续更新）</span></a></li></ol></div>
             
 
           </div>
