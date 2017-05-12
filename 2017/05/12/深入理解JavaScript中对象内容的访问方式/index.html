@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="博客, JavaScript" />
+  <meta name="keywords" content="JavaScript,对象," />
 
 
 
@@ -87,15 +87,16 @@
 
 
 
-<meta name="description" content="欢迎来到我的个人站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="阿瑞斯的BLOG">
-<meta property="og:url" content="http://yoursite.com/tags/思考问题的方式/index.html">
+<meta name="description" content="整理一下对象访问两种方式的区别以及持续更新不同的使用场景">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解JavaScript中对象内容的访问方式">
+<meta property="og:url" content="http://yoursite.com/2017/05/12/深入理解JavaScript中对象内容的访问方式/index.html">
 <meta property="og:site_name" content="阿瑞斯的BLOG">
-<meta property="og:description" content="欢迎来到我的个人站">
+<meta property="og:description" content="整理一下对象访问两种方式的区别以及持续更新不同的使用场景">
+<meta property="og:updated_time" content="2017-05-12T06:08:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="阿瑞斯的BLOG">
-<meta name="twitter:description" content="欢迎来到我的个人站">
+<meta name="twitter:title" content="深入理解JavaScript中对象内容的访问方式">
+<meta name="twitter:description" content="整理一下对象访问两种方式的区别以及持续更新不同的使用场景">
 
 
 
@@ -123,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/思考问题的方式/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/12/深入理解JavaScript中对象内容的访问方式/"/>
 
 
 
 
 
-  <title> 标签: 思考问题的方式 | 阿瑞斯的BLOG </title>
+  <title> 深入理解JavaScript中对象内容的访问方式 | 阿瑞斯的BLOG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -154,7 +155,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -269,46 +270,179 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        思考问题的方式
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/12/深入理解JavaScript中对象内容的访问方式/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="aruisi">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="阿瑞斯的BLOG">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="阿瑞斯的BLOG" src="">
+    </span>
+  </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                深入理解JavaScript中对象内容的访问方式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-12T14:06:08+08:00">
+                2017-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>整理一下对象访问两种方式的区别以及持续更新不同的使用场景<br><a id="more"></a></p>
+<h2 id="对象内容的访问的两种方式："><a href="#对象内容的访问的两种方式：" class="headerlink" title="对象内容的访问的两种方式："></a>对象内容的访问的两种方式：</h2><ul>
+<li>. 操作符：通常称为<code>“属性访问”</code></li>
+<li>[ ] 操作符：通常称为<code>“键访问”</code></li>
+</ul>
+<h2 id="属性访问和键访问的异同"><a href="#属性访问和键访问的异同" class="headerlink" title="属性访问和键访问的异同"></a>属性访问和键访问的异同</h2><h3 id="相同"><a href="#相同" class="headerlink" title="相同"></a>相同</h3><p>实际上它们访问的是同一个位置，并且会返回相同的值</p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p> . 操作符要求属性名满足标识符的命名规范，而 [“..”] 语法 可以接受任意 UTF-8/Unicode 字符串作为属性名。</p>
+<p> <strong>. 操作符后面总是字符串，所以为对象增加属性的时候使用点语法，会自动把属性名称转为字符串，</strong></p>
+<p>举例： </p>
+<p>  1.如果要引用名称为 “Super- Fun!” 的属性，那就必须使用 [“Super-Fun!”] 语法访问，因为 Super-Fun! 并不是一个有效 的标识符属性名。</p>
+<p>  2.使用Symbol值作为对象的属性名时只能使用 [ ]</p>
+<blockquote>
+<p>由于每一个 Symbol 值都是不相等的，这意味着 Symbol 值可以作为标识符，用于对象的属性名，就能保证不会出现同名的属性。这对于一个对象由多个模块构成的情况非常有用，能防止某一个键被不小心改写或覆盖。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> mySymbol = <span class="built_in">Symbol</span>();</div><div class="line"></div><div class="line"><span class="comment">//第一种写法</span></div><div class="line"><span class="keyword">var</span> o = &#123;&#125;;</div><div class="line">o.mySymbol = <span class="string">'Hello'</span>;</div><div class="line"></div><div class="line"><span class="comment">//第二种写法</span></div><div class="line"><span class="keyword">var</span> o = &#123;&#125;;</div><div class="line">o[mySymbol] = <span class="string">'Hello'</span>;</div><div class="line"></div><div class="line"><span class="comment">//第三种写法</span></div><div class="line"><span class="keyword">var</span> o = &#123;</div><div class="line">  [mySymbol]: <span class="string">'Hello!'</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 第四种写法</span></div><div class="line"><span class="keyword">var</span> o = &#123;&#125;;</div><div class="line"><span class="built_in">Object</span>.defineProperty(o, mySymbol, &#123; <span class="attr">value</span>: <span class="string">'Hello!'</span> &#125;);</div></pre></td></tr></table></figure>
+<p>上面代码通过方括号结构和<code>Object.defineProperty</code>，将对象的属性名指定为一个 Symbol 值。</p>
+<p>注意：第一种写法是不会读取<code>mySymbol</code>作为标识符所指代的那个值的，<strong>因为点语法后面总是字符串</strong>，导致a的属性名实际上是一个字符串，而不是一个 Symbol 值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">o.mySymbol = <span class="string">'Hello!'</span>;</div><div class="line">o[mySymbol] <span class="comment">// undefined</span></div><div class="line">o[<span class="string">'mySymbol'</span>] <span class="comment">// "Hello!"</span></div></pre></td></tr></table></figure>
+<p><strong>同理，在对象的内部，使用 Symbol 值定义属性时，Symbol 值必须放在方括号之中。</strong></p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="[ ] 使用场景"></a>[ ] 使用场景</h2><p>1.可计算属性名</p>
+<p>2.Symbol值作属性名</p>
+<p>3.需要使用变量方式遍历属性</p>
+<p>4.函数传参，参数作属性名，或者属性名的一部分，只能使用 [ ]</p>
+<p>5.使用对象法进行数组去重，对象的键是一个变量</p>
+<p>参考：<br><a href="http://es6.ruanyifeng.com/#docs/symbol" target="_blank" rel="external">ECMAScript6 入门——Symbol</a></p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/04/04/像程序员般思考/" itemprop="url">
-              
-                <span itemprop="name">像程序员般思考</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-04T11:44:53+08:00"
-              content="2017-04-04" >
-          04-04
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/对象/" rel="tag"># 对象</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/10/JavaScript运算符/" rel="next" title="JavaScript运算符">
+                <i class="fa fa-chevron-left"></i> JavaScript运算符
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
           
           </div>
@@ -316,6 +450,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -335,8 +473,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400"
@@ -398,6 +545,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象内容的访问的两种方式："><span class="nav-number">1.</span> <span class="nav-text">对象内容的访问的两种方式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性访问和键访问的异同"><span class="nav-number">2.</span> <span class="nav-text">属性访问和键访问的异同</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相同"><span class="nav-number">2.1.</span> <span class="nav-text">相同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别"><span class="nav-number">2.2.</span> <span class="nav-text">区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">3.</span> <span class="nav-text">[ ] 使用场景</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
@@ -504,6 +667,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
