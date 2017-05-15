@@ -1,0 +1,868 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,函数," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="闭包中使用this存在的问题关键词: 闭包 函数声明时 函数运行时 词法作用域 特殊变量 箭头函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="闭包中使用this存在的问题">
+<meta property="og:url" content="http://yoursite.com/2017/05/16/闭包中使用this存在的问题/index.html">
+<meta property="og:site_name" content="阿瑞斯的BLOG">
+<meta property="og:description" content="闭包中使用this存在的问题关键词: 闭包 函数声明时 函数运行时 词法作用域 特殊变量 箭头函数">
+<meta property="og:updated_time" content="2017-05-15T16:42:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="闭包中使用this存在的问题">
+<meta name="twitter:description" content="闭包中使用this存在的问题关键词: 闭包 函数声明时 函数运行时 词法作用域 特殊变量 箭头函数">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/16/闭包中使用this存在的问题/"/>
+
+
+
+
+
+  <title> 闭包中使用this存在的问题 | 阿瑞斯的BLOG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">阿瑞斯的BLOG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">一个不一样的开始</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/闭包中使用this存在的问题/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="aruisi">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="阿瑞斯的BLOG">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="阿瑞斯的BLOG" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                闭包中使用this存在的问题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-16T00:40:07+08:00">
+                2017-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="闭包中使用this存在的问题"><a href="#闭包中使用this存在的问题" class="headerlink" title="闭包中使用this存在的问题"></a>闭包中使用this存在的问题</h1><p>关键词: 闭包 函数声明时 函数运行时 词法作用域 特殊变量 箭头函数<br><a id="more"></a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>也是为什么老是有<code>var that = this;</code>的写法以及箭头函数产生的原因。</p>
+<h2 id="闭包中使用this的问题"><a href="#闭包中使用this的问题" class="headerlink" title="闭包中使用this的问题"></a>闭包中使用this的问题</h2><p>在闭包中使用<code>this</code>是想和利用闭包的特性像引用其他其他变量一样引用保存外层函数的<code>this</code>，但是期望与现实是相反的。</p>
+<p>因为<code>this</code>是一个运行时基于函数的调用环境绑定的特殊变量。特别是，匿名函数的执行环境具有全局性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在闭包中使用this是想和利用闭包的特性像引用其他其他变量一样引用保存外层函数的this，但是期望与现实是相反的。</span></div><div class="line"><span class="comment">// 因为this是一个运行时基于函数的调用环境绑定的特殊变量。特别是，匿名函数的执行环境具有全局性。</span></div><div class="line"><span class="keyword">var</span> name = <span class="string">'The Window'</span>;</div><div class="line"><span class="keyword">var</span> object = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'My Object'</span>,</div><div class="line">    <span class="attr">getNameFunc</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;          <span class="comment">//闭包</span></div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name;       <span class="comment">//在闭包中使用this</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(object.getNameFunc()()); <span class="comment">//在严格模式中 undefined </span></div><div class="line">                                     <span class="comment">//在非严格模式下浏览器中 Window</span></div></pre></td></tr></table></figure>
+<h3 id="为什么this会指向undefined呢？"><a href="#为什么this会指向undefined呢？" class="headerlink" title="为什么this会指向undefined呢？"></a>为什么this会指向undefined呢？</h3><p>这是因为每个函数在调用的时候都会自动取得两个特殊的变量，<code>this</code>和<code>arguments</code>，内部函数在搜索这2个变量的时候，只会搜索到其活动对象为止，因此永远不可能访问到外部函数中的这2个变量。</p>
+<h3 id="那么如何访问到这两个变量呢？"><a href="#那么如何访问到这两个变量呢？" class="headerlink" title="那么如何访问到这两个变量呢？"></a>那么如何访问到这两个变量呢？</h3><p>把外部作用域中的<code>this</code>保存到一个闭包能访问到的变量里，并在闭包中引用那个变量，而不是引用<code>this</code><br>常见的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="keyword">this</span>  = that;</div><div class="line"><span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</div></pre></td></tr></table></figure>
+<p>上例的修改后：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">'The Window'</span>;</div><div class="line"><span class="keyword">var</span> object = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'My Object'</span>,</div><div class="line">    <span class="attr">getNameFunc</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> that = <span class="keyword">this</span>;             <span class="comment">//修改：保存外部作用域的this到一个闭包能访问到变量中</span></div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;          <span class="comment">//闭包</span></div><div class="line">            <span class="comment">//return this.name;       //在闭包中使用this</span></div><div class="line">            <span class="keyword">return</span> that.name;         <span class="comment">//修改：在闭包中通过引用that来引用外部作用域的特殊变量this</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(object.getNameFunc()()); <span class="comment">//在严格模式中 undefined </span></div><div class="line">                                     <span class="comment">//在非严格模式下浏览器中 this指向Window</span></div></pre></td></tr></table></figure>
+<h2 id="ES6的箭头函数："><a href="#ES6的箭头函数：" class="headerlink" title="ES6的箭头函数："></a>ES6的箭头函数：</h2><p>ES6的箭头函数最佳的使用姿势就是解决<code>this</code>指向问题。<br>因为在JavaScript中，对象之间的调用是非常繁杂的，一不小心遇到<code>this</code>被篡改的问题，导致后面的代码出错：</p>
+<p>比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class Animal &#123;</div><div class="line">  constructor() &#123;</div><div class="line">    this.type = ‘animal’;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  says(say)&#123;</div><div class="line">    setTimeout(function() &#123;</div><div class="line">      console.log(this.type + ’says’ + say);</div><div class="line">     &#125;, 1000);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let animal = new Animal();</div><div class="line">animal.says(‘hi’); //undefined says hi</div></pre></td></tr></table></figure>
+<p>这是一个比较经典的<code>this</code>被篡改的问题，因为这个<code>setTimeout</code>函数，他的<code>this</code>指向<code>window</code>对象。</p>
+<p>我们可以利用一个变量保存住这个<code>this</code>指针，也或者使用<code>bind(this)</code>方法，<strong>但有了箭头函数，等于函数本身集成了保存this指针的功能，这让我们不是处处提防this陷阱。</strong>同样的，基于这个原因，箭头函数中没有自己的<code>this</code>，但当你在箭头函数内部使用了<code>this</code>，常规的局部作用域准则就起作用了，它会指向最近一层作用域内的  <code>this</code>。</p>
+<h2 id="箭头函数最常用于回调函数，如事件处理器或定时器中"><a href="#箭头函数最常用于回调函数，如事件处理器或定时器中" class="headerlink" title="箭头函数最常用于回调函数，如事件处理器或定时器中"></a>箭头函数最常用于回调函数，如事件处理器或定时器中</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">class Animal &#123;</div><div class="line">  constructor() &#123;</div><div class="line">    this.type = ‘animal’;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  says(say)&#123;</div><div class="line">    setTimeout(() =&gt; &#123;</div><div class="line">      console.log(this.type + ’says’ + say);</div><div class="line">     &#125;, 1000);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let animal = new Animal();</div><div class="line">animal.says(‘hi’); // animal says hi</div><div class="line"></div><div class="line">//等价于</div><div class="line">class Animal &#123;</div><div class="line">  constructor() &#123;</div><div class="line">    this.type = ‘animal’;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  says(say)&#123;</div><div class="line">    var that = this;</div><div class="line">    setTimeout(function() &#123;</div><div class="line">      console.log(that.type + ’says’ + say);</div><div class="line">     &#125;, 1000);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="对箭头函数的误解"><a href="#对箭头函数的误解" class="headerlink" title="对箭头函数的误解"></a>对箭头函数的误解</h2><blockquote>
+<p>最大的误解：箭头函数使用的是外部函数（这里理解成父函数）的this</p>
+</blockquote>
+<h3 id="是否局部（Lexical）？"><a href="#是否局部（Lexical）？" class="headerlink" title="是否局部（Lexical）？"></a>是否局部（Lexical）？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">   setTimeout( () =&gt; &#123;</div><div class="line">      console.log(&quot;id:&quot;, this.id);</div><div class="line">   &#125;,100);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo.call( &#123; id: 42 &#125; );</div><div class="line">// id: 42</div></pre></td></tr></table></figure>
+<p>这里的 =&gt; 箭头函数看起来把它内部的<code>this</code>绑定为父函数 foo() 里的 this。如果这个内部函数是一个常规的函数（声明或表达式），它的 <code>this</code>将类似 <code>setTimeout</code>如何调用函数一样被控制着。</p>
+<p>但是实际上是<strong>箭头函数内部根本没有<code>this</code>变量</strong>，对于<code>this</code>变量的访问变量就像根据词法作用域查找一般变量一样,查找到有<code>this</code>变量的外层作用域，而不是父级作用域。</p>
+<h2 id="箭头函数的注意"><a href="#箭头函数的注意" class="headerlink" title="箭头函数的注意"></a>箭头函数的注意</h2><p>1）箭头函数 =&gt; 所改变的并非把 <code>this</code> 局部化，而是完全不把  <code>this</code> 绑定到里面去”, 虽然 =&gt; 箭头函数没有一个自己的 <code>this</code>，但当你在内部使用了<code>this</code>，常规的局部作用域准则就起作用了，它会指向最近一层作用域内的<code>this</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">   return () =&gt; &#123;</div><div class="line">      return () =&gt; &#123;</div><div class="line">         return () =&gt; &#123;</div><div class="line">            console.log(&quot;id:&quot;, this.id);</div><div class="line">         &#125;;</div><div class="line">      &#125;;</div><div class="line">   &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo.call( &#123; id: 42 &#125; )()()();</div><div class="line">// id: 42</div></pre></td></tr></table></figure>
+<p>有多少次 this 的绑定执行了呢？大部分人会认为有4次——每个函数里各一次。</p>
+<p>事实上更准确地说，<strong>只有一次才对</strong>，它发生于 foo() 函数中。</p>
+<p>这些接连内嵌的函数们都没有声明它们自己的 this，所以 this.id 的引用会简单地顺着作用域链查找，一直查到 foo() 函数，它是第一处能找到一个确切存在的 this 的地方。</p>
+<p>说白了跟其它局部变量的常规处理是一致的！</p>
+<p>换句话说，正如同 Dave 说的一样，<strong>this 生来局部，而且一直都保持局部态。</strong>=&gt;箭头函数并不会绑定一个 <code>this</code> 变量，它的作用域会如同寻常所做的一样一层层地去往上查找。</p>
+<p>2)不仅仅是this</p>
+<p>如果你贸贸然地同意了“箭头函数就是常规function的语法糖”这样的观点，那是不正确的，因为事实并非如此——箭头函数里并不按常规支持 var self = this 或者 .bind(this) 这样的糖果。</p>
+<p>那些错误的解释都是典型的“给对了答案却讲错了原因”，就像你在高中代数课的测试上明明写对了答案，但老师仍会画圈圈告诉你用错方法了——如何解得答案才是最重要的！</p>
+<p>另外，关于“=&gt;箭头函数不绑定自身的 this，而允许局部作用域的方案来沿袭处理之”的正确描述，也解释了箭头函数的另一个情况——它们在函数内部不走寻常路的孩子不仅仅是 this。</p>
+<p>事实上 =&gt;箭头函数并不绑定 this，arguments，super(ES6)，抑或 new.target(ES6)。</p>
+<p>这是真的，对于上述的四个（未来可能有更多）地方，箭头函数不会绑定那些局部变量，所有涉及它们的引用，都会沿袭向上查找外层作用域链的方案来处理。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   setTimeout( <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"args:"</span>, <span class="built_in">arguments</span>);</div><div class="line">   &#125;,<span class="number">100</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo( <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span> );</div><div class="line"><span class="comment">// args: [2, 4, 6, 8]</span></div></pre></td></tr></table></figure>
+<p>这段代码中，=&gt;箭头函数并没有绑定 arguments，所以它会以 foo() 的 arguments 来取而代之，而 super 和 new.target 也是一样的情况。</p>
+<p>3）this在箭头函数中被绑定，4种绑定规则中的无论哪种都无法改变其绑定</p>
+<p>4）箭头函数不可以当作构造函数，也就是不可以使用new命令，否则会报错</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>虽然箭头函数可以把作用域和this机制联系起来，但是却容易混淆，使代码难以维护。应该在作用域和this机制中二选一，否则就会造成混淆。要么只使用词法作用域，要么只使用this机制，必要时使用bind()。尽量避免使用that=this和箭头函数共同使用。</p>
+<p>参考：</p>
+<p><a href="http://www.cnblogs.com/vajoy/p/4902935.html" target="_blank" rel="external">ES6 箭头函数中的 this？你可能想多了（翻译）</a></p>
+<p><a href="http://es6.ruanyifeng.com/#docs/function#箭头函数" target="_blank" rel="external">ECMAScript 6 入门-箭头函数 阮一峰</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/函数/" rel="tag"># 函数</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/12/深入理解JavaScript中对象内容的访问方式/" rel="next" title="深入理解JavaScript中对象内容的访问方式">
+                <i class="fa fa-chevron-left"></i> 深入理解JavaScript中对象内容的访问方式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400"
+               alt="aruisi" />
+          <p class="site-author-name" itemprop="name">aruisi</p>
+           
+              <p class="site-description motion-element" itemprop="description">欢迎来到我的个人站</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sr6783" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包中使用this存在的问题"><span class="nav-number">1.</span> <span class="nav-text">闭包中使用this存在的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包中使用this的问题"><span class="nav-number">1.2.</span> <span class="nav-text">闭包中使用this的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么this会指向undefined呢？"><span class="nav-number">1.2.1.</span> <span class="nav-text">为什么this会指向undefined呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#那么如何访问到这两个变量呢？"><span class="nav-number">1.2.2.</span> <span class="nav-text">那么如何访问到这两个变量呢？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6的箭头函数："><span class="nav-number">1.3.</span> <span class="nav-text">ES6的箭头函数：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#箭头函数最常用于回调函数，如事件处理器或定时器中"><span class="nav-number">1.4.</span> <span class="nav-text">箭头函数最常用于回调函数，如事件处理器或定时器中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对箭头函数的误解"><span class="nav-number">1.5.</span> <span class="nav-text">对箭头函数的误解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#是否局部（Lexical）？"><span class="nav-number">1.5.1.</span> <span class="nav-text">是否局部（Lexical）？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#箭头函数的注意"><span class="nav-number">1.6.</span> <span class="nav-text">箭头函数的注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">1.7.</span> <span class="nav-text">最后</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aruisi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
