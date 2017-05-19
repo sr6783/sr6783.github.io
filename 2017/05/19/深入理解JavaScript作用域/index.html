@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="计算机基础," />
+  <meta name="keywords" content="JavaScript,作用域,定义时," />
 
 
 
@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="首先,在了解字符集和字符编码是什么之前先去看看为什么会有字符集和字符编码,它是为了解决什么问题?">
+<meta name="description" content="关键词: 作用域 定义时 变量查找规则 赋值操作基于作用域查找规则 查找目标的值也是基于作用域查找规则">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符集和字符编码">
-<meta property="og:url" content="http://yoursite.com/2017/04/08/字符集和字符编码/index.html">
+<meta property="og:title" content="深入理解JavaScript作用域">
+<meta property="og:url" content="http://yoursite.com/2017/05/19/深入理解JavaScript作用域/index.html">
 <meta property="og:site_name" content="阿瑞斯的BLOG">
-<meta property="og:description" content="首先,在了解字符集和字符编码是什么之前先去看看为什么会有字符集和字符编码,它是为了解决什么问题?">
-<meta property="og:updated_time" content="2017-04-08T16:53:15.000Z">
+<meta property="og:description" content="关键词: 作用域 定义时 变量查找规则 赋值操作基于作用域查找规则 查找目标的值也是基于作用域查找规则">
+<meta property="og:updated_time" content="2017-05-19T08:51:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="字符集和字符编码">
-<meta name="twitter:description" content="首先,在了解字符集和字符编码是什么之前先去看看为什么会有字符集和字符编码,它是为了解决什么问题?">
+<meta name="twitter:title" content="深入理解JavaScript作用域">
+<meta name="twitter:description" content="关键词: 作用域 定义时 变量查找规则 赋值操作基于作用域查找规则 查找目标的值也是基于作用域查找规则">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/08/字符集和字符编码/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/19/深入理解JavaScript作用域/"/>
 
 
 
 
 
-  <title> 字符集和字符编码 | 阿瑞斯的BLOG </title>
+  <title> 深入理解JavaScript作用域 | 阿瑞斯的BLOG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -280,7 +280,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/08/字符集和字符编码/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/19/深入理解JavaScript作用域/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="aruisi">
@@ -304,7 +304,7 @@
             
             
               
-                字符集和字符编码
+                深入理解JavaScript作用域
               
             
           </h1>
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-08T22:26:45+08:00">
-                2017-04-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-19T16:49:08+08:00">
+                2017-05-19
               </time>
             
 
@@ -355,36 +355,27 @@
       
 
       
-        <p>首先,在了解字符集和字符编码是什么之前先去看看为什么会有字符集和字符编码,它是为了解决什么问题?<br><a id="more"></a></p>
-<h2 id="字符集的产生"><a href="#字符集的产生" class="headerlink" title="字符集的产生"></a>字符集的产生</h2><p>我们平时在计算机屏幕上看到的文字内容并不是直接以文字的形式存储在计算机的存储介质中,计算机存储介质中存放的实际上是二进制的比特流。也就是说,不论你在计算机上看到的汉字,英文字母,日文等等,一旦存入计算机存储介质中,最终都是以010101010形式存放。那么如何确保拿出来转换的是汉字不是日文呢?显然,在这两者之间的转换就需要一个统一的规则,不然,当你把文档发给别人,别人的转换规则和你不一样,岂不是就出现乱码了?</p>
-<p>所以为了统一转换,字符集就诞生了。简单的说,字符集规定了某个文字对应的二进制数字存放方式(编码)和某串二进制数值代表了哪个文字(解码)的转换关系。</p>
-<p> <strong>“字符集”</strong>就像谍战片中的<strong>“译码本”</strong>一样,发电报时,大家发送的都是”滴答滴答”的原始信息,但是通过译码本,就可以转换成真实的字符。就像译码本一样,同样的原始信息经过不同的译码本翻译可能得到不同的结果;对于相同的一个字经过不同的译码本转换,翻译出的内容也不一样,这也就是为什么谍战片中大家都这么重视译码本。</p>
-<p>对于一个字符集来说要正确编码转码一个字符需要三个关键元素:字库表(character repertoire)、编码字符集(coded character set)、字符编码(character encoding form)。</p>
-<ul>
-<li>字库表<blockquote>
-<p>是一个相当于所有可读或者可现实字符的数据库,字库表决定了整个字符集能够展示的所有字符的范围。</p>
+        <p>关键词: 作用域 定义时 变量查找规则 赋值操作基于作用域查找规则 查找目标的值也是基于作用域查找规则<br><a id="more"></a></p>
+<h2 id="作用域规则"><a href="#作用域规则" class="headerlink" title="作用域规则"></a>作用域规则</h2><p>JavaScript作用域是<font color="red"><strong>定义时</strong></font>的概念，用于确定在何处以及如何查找变量（标识符），如果是对变量的赋值操作就会进行LHS查询，如果是获取变量的值就会进行RHS查询。</p>
+<h2 id="深入理解”定义时”概念"><a href="#深入理解”定义时”概念" class="headerlink" title="深入理解”定义时”概念"></a>深入理解”定义时”概念</h2><p>两个函数唯一的区别：在于函数体内部的变量x是否用var重新声明.</p>
+<p>当使用默认参数的时候，参数会形成一个单独的作用域，等到初始化结束，这个作用域就会消失。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">例<span class="number">1</span>：</div><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x, y = function(</span>) </span>&#123; x = <span class="number">2</span>&#125;) &#123;</div><div class="line">  <span class="keyword">var</span> x = <span class="number">3</span>;</div><div class="line">  y();</div><div class="line">  <span class="built_in">console</span>.log(x);</div><div class="line">&#125;</div><div class="line">foo();  <span class="comment">// 3</span></div><div class="line">x;  <span class="comment">// 1</span></div><div class="line">----------------------------------------------</div><div class="line">例<span class="number">2</span>：</div><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x, y = function(</span>) </span>&#123; x = <span class="number">2</span>&#125;) &#123;</div><div class="line">  x = <span class="number">3</span>;</div><div class="line">  y();</div><div class="line">  <span class="built_in">console</span>.log(x);</div><div class="line">&#125;</div><div class="line">foo();  <span class="comment">// 2</span></div><div class="line">x;  <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<p><strong>代码的执行过程：参数初始化过程和函数体代码执行过程</strong></p>
+<p>对于例1很容易得出错误的结果<code>foo(); // 3</code> <code>x; // 1</code></p>
+<p><strong>错误的原因就是：对于作用域是定义时概念理解得不深刻。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">参数初始化过程：</div><div class="line">1.形成一个独立的作用域，当不传递参数y时，使用默认参数值进行初始化</div><div class="line">&#123;</div><div class="line">  let x;</div><div class="line">  let y = function() &#123;x = 2 &#125;;</div><div class="line">&#125;</div><div class="line">2.代码执行的过程</div><div class="line">var x = 3;  // 用var重新声明了和参数同名的变量x，则此时参数x被覆盖，变量x和参数x不是同一个x</div><div class="line">y();  // 函数调用，对变量x进行赋值操作，这时最容易出错的地方</div><div class="line">      // 因为y函数内部并没有变量x，则对外层的变量x进行赋值，关键是对哪一个外层的x进行赋值？</div><div class="line">      // 这里很容易理解成调用时函数y的外部x进行赋值，这个时候就把定义时的概念没有理解清楚。</div><div class="line">      // 而真实的是此时对参数作用域中的x进行赋值，但因为参数x和变量x不指向同一个x，而函数体内使用的是变量x，所以赋值操作没有生效。</div></pre></td></tr></table></figure>
+<p>对于例2,因为没有用<code>var</code>重新声明一个同名变量，此时函数体内的x指向参数<code>x，y</code>赋值操作的目标也是参数<code>x</code>，两个<code>x</code>是同一个<code>x</code>，所以<code>y()</code>赋值成功。</p>
+<h2 id="关于为什么会错误理解"><a href="#关于为什么会错误理解" class="headerlink" title="关于为什么会错误理解"></a>关于为什么会错误理解</h2><p>因为时常弄混淆静态作用域和动态<code>this</code></p>
+<h2 id="动态作用域"><a href="#动态作用域" class="headerlink" title="动态作用域"></a>动态作用域</h2><p>JavaScript中的作用域是词法作用域</p>
+<p>词法作用域是一套关于引擎寻找变量以及会在何处找到变量的规则。词法作用域最最最最重要的特征是它的定义过程发生在代码的书写阶段（假设你没有使用eval()或with）</p>
+<p>动态作用域似乎暗示有很好的理由让作用域作为一个在运行时就被动态确定的形式，而不是在写代码时进行静态确定的形式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(a);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a = <span class="number">3</span>;</div><div class="line">  foo();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line"></div><div class="line">bar();</div></pre></td></tr></table></figure>
+<p>词法作用域让<code>foo()</code>中的<code>a</code>通过RHS引用到了全局作用域中的a，因此会输出2.</p>
+<p>而动态作用域并不关心函数和作用域是如何声明以及在何处声明的，只关心它们<font color="red
+">从何处调用</font>。换句话说，作用域链是基于调用栈的，而不是代码中的作用域嵌套。动态作用域的查找结果导致<code>a</code>为3.</p>
+<h2 id="简单总结区别"><a href="#简单总结区别" class="headerlink" title="简单总结区别"></a>简单总结区别</h2><blockquote>
+<p>词法作用域是在写代码的时候或者说定义时确定的，而动态作用域是在运行时确定的，（this也是！） 词法作用域关注函数在何处声明，而动态作用域关注函数从何处调用。</p>
 </blockquote>
-</li>
-<li>编码字符集<blockquote>
-<p>即用一个编码值code point来表示一个字符在字库中的位置。</p>
-</blockquote>
-</li>
-<li>字符编码<blockquote>
-<p>将编码字符集和实际存储数值之间的转换关系。一般来说都会直接将code point的值作为编码后的值直接存储(ASCII中)</p>
-</blockquote>
-</li>
-</ul>
-<p>这么看来,字库表和编码字符集看来是必不可少的,既然字库表已经有序号了那为什么不直接把序号作为存储内容呢?干嘛还要多此一举通过字符编码把序号转换成另一种存储格式呢?</p>
-<p>因为统一字库表的目的是为了能够涵盖世界上所有的字符,但实际使用的过程中呢,真正用到的字符占字库表的比例是非常低的。比如老美,他们仅仅可能仅仅只用到了ASCII中的128个字符,但是如果都以字库表中的序号来存储的话,原本ASCII中的一个字符只占一个字节,现在一个字符占了三个字节,这显然对他们很不友好。这个时候就出现了UTF-8这样的变成编码。在UTF-8编码中,原本只占一个字节的ASCII字符,仍然只占一个字节。</p>
-<h2 id="为什么会有Unicode字符集编码标准"><a href="#为什么会有Unicode字符集编码标准" class="headerlink" title="为什么会有Unicode字符集编码标准?"></a>为什么会有Unicode字符集编码标准?</h2><p>因为ASCII是美国人自己用的,ASCII开始普及之后,各国针对ASCII字符不够自己国家/地区使用,在ASCII上做了扩展,因为此,出现了同一个二进制编码表示不同编码的问题。解决了一个字节不够表示全球中所有符号的问题。</p>
-<h2 id="UTF-8和Unicode的关系"><a href="#UTF-8和Unicode的关系" class="headerlink" title="UTF-8和Unicode的关系"></a>UTF-8和Unicode的关系</h2><p>Unicode就是字符集编码，而UTF-8就是字符编码,就是Unicode规则字库的一种实现形式。unicode一个中文字符占2个字节，而UTF-8一个中文字符占3个字节)。从unicode到UTF-8并不是直接的对应，而是要过一些算法和规则来转换。UTF-8编码的实现方法，即UTF-8的物理存储和Unicode序号的转换关系。</p>
-<h2 id="为什么会出现乱码"><a href="#为什么会出现乱码" class="headerlink" title="为什么会出现乱码?"></a>为什么会出现乱码?</h2><p>编码和解码时使用了不同的字符集。对于字符”很屌”经过UTF-8编码后,它的十六进制表示E5BE88E5B18C这串数字,而我们显示的时候用GBK解码进行展示。(GBK的解码规则是:对于一个字节，如果它是小于127的，那么它就是一个英文单字节。而如果某个字节是大于127，就表示是一个汉字的开始.所以当时会有1个汉字2个英文字符的说法),此时GBK会把这串数字拆成 E5BE 88E5 B18C三组,每组两个字节,所以GBK解码后就成了寰堝睂三个字符。不仅和原来的完全不一样还多了一个。</p>
-<h2 id="出现乱码后如何识别原来的想要表达文字"><a href="#出现乱码后如何识别原来的想要表达文字" class="headerlink" title="出现乱码后如何识别原来的想要表达文字?"></a>出现乱码后如何识别原来的想要表达文字?</h2><ol>
-<li>编码(发现乱码的当前编码,转回二进制)</li>
-<li>切割(获取二进制字符串并按字节拆成字节数组)</li>
-<li>解码</li>
-</ol>
-<h2 id="最后补充一下计算机中存的是二进制-但是常见的用十六进制表示而不用十进制-或者其他八进制"><a href="#最后补充一下计算机中存的是二进制-但是常见的用十六进制表示而不用十进制-或者其他八进制" class="headerlink" title="最后补充一下计算机中存的是二进制,但是常见的用十六进制表示而不用十进制?或者其他八进制?"></a>最后补充一下计算机中存的是二进制,但是常见的用十六进制表示而不用十进制?或者其他八进制?</h2><p>因为二进制过长的数字代码对于阅读带来不便,十进制和二进制没有指数型关系。十六进制简洁且和二进制成倍数关系,两个十六进制就可以表示8个二进制位也就是一个字节。</p>
 
       
     </div>
@@ -408,7 +399,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/计算机基础/" rel="tag"># 计算机基础</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/作用域/" rel="tag"># 作用域</a>
+          
+            <a href="/tags/定义时/" rel="tag"># 定义时</a>
           
         </div>
       
@@ -421,8 +416,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/04/像程序员般思考/" rel="next" title="像程序员般思考">
-                <i class="fa fa-chevron-left"></i> 像程序员般思考
+              <a href="/2017/05/18/JavaScript函数的设计/" rel="next" title="JavaScript函数的设计">
+                <i class="fa fa-chevron-left"></i> JavaScript函数的设计
               </a>
             
           </div>
@@ -430,10 +425,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/09/JavaScript复合类型的隐式转换/" rel="prev" title="JavaScript复合类型的隐式转换">
-                JavaScript复合类型的隐式转换 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -562,7 +553,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符集的产生"><span class="nav-number">1.</span> <span class="nav-text">字符集的产生</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会有Unicode字符集编码标准"><span class="nav-number">2.</span> <span class="nav-text">为什么会有Unicode字符集编码标准?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UTF-8和Unicode的关系"><span class="nav-number">3.</span> <span class="nav-text">UTF-8和Unicode的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会出现乱码"><span class="nav-number">4.</span> <span class="nav-text">为什么会出现乱码?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#出现乱码后如何识别原来的想要表达文字"><span class="nav-number">5.</span> <span class="nav-text">出现乱码后如何识别原来的想要表达文字?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后补充一下计算机中存的是二进制-但是常见的用十六进制表示而不用十进制-或者其他八进制"><span class="nav-number">6.</span> <span class="nav-text">最后补充一下计算机中存的是二进制,但是常见的用十六进制表示而不用十进制?或者其他八进制?</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域规则"><span class="nav-number">1.</span> <span class="nav-text">作用域规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深入理解”定义时”概念"><span class="nav-number">2.</span> <span class="nav-text">深入理解”定义时”概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于为什么会错误理解"><span class="nav-number">3.</span> <span class="nav-text">关于为什么会错误理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态作用域"><span class="nav-number">4.</span> <span class="nav-text">动态作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单总结区别"><span class="nav-number">5.</span> <span class="nav-text">简单总结区别</span></a></li></ol></div>
             
 
           </div>
