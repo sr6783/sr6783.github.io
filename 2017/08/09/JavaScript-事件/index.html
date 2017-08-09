@@ -1,0 +1,891 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,事件," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="JavaScript事件关键词： 事件流 事件冒泡 事件捕获 事件委托 事件处理函数被执行的时机 自定义事件 事件触发的三个阶段 事件对象 事件目标元素">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 事件">
+<meta property="og:url" content="http://yoursite.com/2017/08/09/JavaScript-事件/index.html">
+<meta property="og:site_name" content="阿瑞斯的BLOG">
+<meta property="og:description" content="JavaScript事件关键词： 事件流 事件冒泡 事件捕获 事件委托 事件处理函数被执行的时机 自定义事件 事件触发的三个阶段 事件对象 事件目标元素">
+<meta property="og:updated_time" content="2017-08-09T07:45:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 事件">
+<meta name="twitter:description" content="JavaScript事件关键词： 事件流 事件冒泡 事件捕获 事件委托 事件处理函数被执行的时机 自定义事件 事件触发的三个阶段 事件对象 事件目标元素">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/09/JavaScript-事件/"/>
+
+
+
+
+
+  <title> JavaScript 事件 | 阿瑞斯的BLOG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">阿瑞斯的BLOG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">一个不一样的开始</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/09/JavaScript-事件/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="aruisi">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="阿瑞斯的BLOG">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="阿瑞斯的BLOG" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript 事件
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-09T15:44:41+08:00">
+                2017-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JavaScript事件"><a href="#JavaScript事件" class="headerlink" title="JavaScript事件"></a>JavaScript事件</h1><p>关键词： 事件流 事件冒泡 事件捕获 事件委托 事件处理函数被执行的时机 自定义事件 事件触发的三个阶段 事件对象 事件目标元素<br><a id="more"></a></p>
+<h2 id="什么是事件流？什么是IE事件流？IE事件流和DOM事件流的区别是什么？"><a href="#什么是事件流？什么是IE事件流？IE事件流和DOM事件流的区别是什么？" class="headerlink" title="什么是事件流？什么是IE事件流？IE事件流和DOM事件流的区别是什么？"></a>什么是事件流？什么是IE事件流？IE事件流和DOM事件流的区别是什么？</h2><p>事件流描述的是从页面中接收到事件的顺序，IE的事件流是事件冒泡（event bubbling）,而Netscape提出和支持的是事件捕获流，但由于Netscape已经被淘汰了，所以没有只支持事件捕获的浏览器了，而DOM 2级事件模型是把两种事件合并起来了。</p>
+<p>DOM事件流的目的旨在通过事件捕获为截获事件提供了机会，通过事件冒泡设置处理程序响应事件。</p>
+<p>#事件触发的三个阶段</p>
+<p>1.document 往事件触发地点，捕获前进，遇到相同注册事件立即触发执行</p>
+<p>2.到达事件位置，触发事件</p>
+<p>3.事件触发地点往 document 方向，冒泡前进，遇到相同注册事件立即触发</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">      #parent &#123;</div><div class="line">        width: 200px;</div><div class="line">        height: 200px;</div><div class="line">        background-color: blue</div><div class="line">      &#125;</div><div class="line">      #child &#123;</div><div class="line">          background-color: red;</div><div class="line">          width: 100px;</div><div class="line">          height: 100px;</div><div class="line">      &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"child"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">       document.getElementById('parent').onclick = function() &#123;</div><div class="line">           alert('father emit!');</div><div class="line">       &#125;</div><div class="line">       document.getElementById('child').onclick = function() &#123;</div><div class="line">           alert('child emit!');</div><div class="line">       &#125;  </div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>从上个例子的结果child emit！father emit！可以看出，通过onload注册的事件仅仅支持冒泡，也就是说通过DOM 0级的注册的事件处理程序仅仅只是在冒泡阶段被处理。</p>
+<h3 id="假如一个元素既注册了冒泡，也注册了捕获，是捕获先被触发呢还是冒泡先被触发呢？"><a href="#假如一个元素既注册了冒泡，也注册了捕获，是捕获先被触发呢还是冒泡先被触发呢？" class="headerlink" title="假如一个元素既注册了冒泡，也注册了捕获，是捕获先被触发呢还是冒泡先被触发呢？"></a>假如一个元素既注册了冒泡，也注册了捕获，是捕获先被触发呢还是冒泡先被触发呢？</h3><p>根据DOM2级事件流，捕获——到达——冒泡的顺序，应该是先发生捕获，再发生冒泡。</p>
+<p>测试结果：</p>
+<ol>
+<li><p>点击父元素，父元素捕获——父元素冒泡，符合先捕获后冒泡的事件流机制。</p>
+</li>
+<li><p>点击子元素，父元素捕获——子元素冒泡——子元素捕获——父元素冒泡，这里可以发现一个很重要的点，即<font color="red"><strong>当一个元素同时存在捕获和冒泡时，会按照注册的时候响应事件处理程序</strong></font></p>
+</li>
+<li><p>如果是通过DOM 0级注册的冒泡，通过DOM2级注册的捕获在同一元素上，以上的结论还成立吗？还是先捕获再冒泡？</p>
+<p>结论还是按照注册的顺序响应事件处理程序</p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">      #parent &#123;</div><div class="line">        width: 200px;</div><div class="line">        height: 200px;</div><div class="line">        background-color: blue</div><div class="line">      &#125;</div><div class="line">      #child &#123;</div><div class="line">          background-color: red;</div><div class="line">          width: 100px;</div><div class="line">          height: 100px;</div><div class="line">      &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"child"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">       // 父元素按照先捕获后冒泡的方式注册</div><div class="line">       document.getElementById('parent').addEventListener('click',function() &#123;</div><div class="line">           alert('parent event capturing emit!');</div><div class="line">       &#125;,true);</div><div class="line"></div><div class="line">       document.getElementById('parent').addEventListener('click',function() &#123;</div><div class="line">           alert('parent event bubbling emit!');</div><div class="line">       &#125;,false);</div><div class="line"></div><div class="line">       // 子元素按照先冒泡后捕获的方式注册</div><div class="line">       document.getElementById('child').addEventListener('click',function() &#123;</div><div class="line">           alert('child event bubbling emit!');</div><div class="line">       &#125;,false);</div><div class="line">       </div><div class="line"> // document.getElementById('child').onclick = function() &#123;</div><div class="line"> //          alert('child event bubbling emit!');</div><div class="line"> //      &#125;   [3]</div><div class="line">  </div><div class="line">document.getElementById('child').addEventListener('click',function() &#123;</div><div class="line">           alert('child event capturing emit!');</div><div class="line">       &#125;,true);</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="对事件流和事件处理程序的理解"><a href="#对事件流和事件处理程序的理解" class="headerlink" title="对事件流和事件处理程序的理解"></a>对事件流和事件处理程序的理解</h2><p>个人认为事件流在DOM2级以后，就是一种事件发生时，事件在DOM中逐级传播的正常现象，这种现象不由我们控制，而我们能做的只是决定我们需要在什么阶段响应事件。是冒泡阶段or捕获阶段？  这个由我们来决定。</p>
+<p>事件处理程序则是响应事件发生做点什么，事件处理程序被调用依赖于两个条件：事件传播到了注册的元素上且在指定的阶段。</p>
+<p>举例，假如一个事件同时存在事件捕获和事件冒泡，事件捕获先注册，事件冒泡后注册，那么如果在事件捕获时通过调用<code>e.stopPropagation()</code>阻止事件的进一步传播，那是不是意味着冒泡阶段的事件处理程序不会再被调用？ </p>
+<p>注意，这里<code>e.stopPropagation()</code><font color="red"><strong>不会取消自身注册的冒泡阶段的事件处理程序响应！！！会触发</strong></font>；而想要在自身同时存在冒泡和捕获的时候取消第二次事件处理程序响应，需要通过<code>e.stopImmediatePropagation()</code>阻止任何事件处理程序被调用。（这也是这2个API的区别）</p>
+<h2 id="为什么我们通常在冒泡阶段调用处理程序？"><a href="#为什么我们通常在冒泡阶段调用处理程序？" class="headerlink" title="为什么我们通常在冒泡阶段调用处理程序？"></a>为什么我们通常在冒泡阶段调用处理程序？</h2><ol>
+<li><p>因为在跨浏览器的事件处理程序中，因为IE只支持冒泡，为了保证事件处理代码在大多数浏览器下一致性的运行的目的。所以事件处理程序被调用的时机也就只关注 冒泡阶段了。</p>
+</li>
+<li><p>事件冒泡允许多个操作被集中处理（把事件处理器添加到一个父级元素上，避免把事件处理器添加到多个子级元素上），它还可以让你在对象层的不同级别捕获事件。这里可能存在疑问：我们把事件处理程序挂在父级元素上，如何在处理程序中去操作子元素？ 一般挂在子元素中，我们明确知道this指向的就是子元素，即操作我们的目标元素，那么在父元素中如何操作子元素呢？<br>不得不提的<code>e.target </code>属性,这个属性会返回事件触发的目标元素，注意这个目标元素一定是唯一的！举例来说：document，parent，child，点击了parent区域就一定是parent，点击了child区域就一定是child，而不会像事件流那样的既是child，也是parent！！！</p>
+</li>
+</ol>
+<p>注意：这里再次说明了事件流不是毫无目的 的“随意流”，而是流到事件的目标元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">e.target 类型 Element</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">      #parent &#123;</div><div class="line">        width: 200px;</div><div class="line">        height: 200px;</div><div class="line">        background-color: blue</div><div class="line">      &#125;</div><div class="line">      #child &#123;</div><div class="line">          background-color: red;</div><div class="line">          width: 100px;</div><div class="line">          height: 100px;</div><div class="line">      &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"parent"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"child"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">       // 把事件处理挂在父元素上，</div><div class="line">       parent.addEventListener('click',function(e) &#123;</div><div class="line">           alert(e.target.id);</div><div class="line">           let _this = e.target; // 获取到目标元素，也就是事件实际的目标</div><div class="line">       &#125;,false);</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<ol>
+<li>让不同的对象同时捕获同一事件，并调用自己的专属处理程序做自己的事情，就像老板一下命令，各自员工做自己岗位上的工作去了。之前分别给parent，child注册的click事件，就是同一事件各自响应各自的处理程序。</li>
+</ol>
+<h2 id="事件冒泡的意义以及应用"><a href="#事件冒泡的意义以及应用" class="headerlink" title="事件冒泡的意义以及应用"></a>事件冒泡的意义以及应用</h2><p>事件委托：只指定一个事件处理程序，就可以管理某一类型的所有事件。</p>
+<p>原理：利用事件冒泡机制，给父元素绑定事件处理程序并指定事件处理程序的响应阶段为冒泡阶段，这个时候点击子元素，由于子元素没有事件处理程序，所有没有任何反应，但是事件流会继续向上冒泡，也就是冒泡到父元素，父元素有处理程序，并且父元素可以知道实际上事件发生时的目标元素——通过e.target  =&gt; 这个是核心</p>
+<p>核心： 通过<code>e.target</code>可以确定实际触发的目标元素</p>
+<p>好处：前者少了一个遍历所有li节点的操作，所以在性能上肯定是更优的；其次当我们绑定完事件以后又动态添加了一些元素，这时候如果是给每个子元素绑定事件，那么为了效果，我们还要为新添加的子元素绑定一次事件，重复操作且代码冗余。</p>
+<h2 id="event对象为什么这么重要呢？"><a href="#event对象为什么这么重要呢？" class="headerlink" title="event对象为什么这么重要呢？"></a>event对象为什么这么重要呢？</h2><p>因为<code>event</code>对象包含与创建它的特定事件有关的属性和方法。触发的事件类型不一样，可用的属性和方法也不一样（原生事件直接封装好）。</p>
+<h2 id="关于currentTarget和target属性"><a href="#关于currentTarget和target属性" class="headerlink" title="关于currentTarget和target属性"></a>关于currentTarget和target属性</h2><p>对象this始终等于currentTarget的值，而target的值只包含事件的实际目标。（触发事件的实际目标）如果直接将事件处理程序指定给目标元素，则this，currentTarget，target包含相同的值。差异体现在冒泡上。</p>
+<h2 id="自定义事件和DOM中的事件模拟"><a href="#自定义事件和DOM中的事件模拟" class="headerlink" title="自定义事件和DOM中的事件模拟"></a>自定义事件和DOM中的事件模拟</h2><h3 id="DOM中的事件模拟"><a href="#DOM中的事件模拟" class="headerlink" title="DOM中的事件模拟"></a>DOM中的事件模拟</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// step1:创建event对象</span></div><div class="line"><span class="keyword">var</span> event = <span class="built_in">document</span>.createEvent(&#123;string&#125;)  <span class="comment">// 该方法创建一个event对象，该方法接收一个参数，表示创建的事件类型的字符串（指定好的），所以字符串在DOM2级中使用复数形式，而在DOM3级中使用了单数形式，这也是为什么有s和没s没区别的原因。</span></div><div class="line"></div><div class="line"><span class="comment">// step2:初始化事件</span></div><div class="line">event.initEvent(eventName, canBubble, preventDefault)  <span class="comment">// 分别表示事件名称，是否可以冒泡，是否阻止事件的默认操作。</span></div><div class="line"></div><div class="line"> </div><div class="line"><span class="comment">// step3:设置事件发生时的参数</span></div><div class="line">event.target = <span class="keyword">this</span>;</div><div class="line">event.message = <span class="string">'sr'</span>;</div><div class="line">...</div><div class="line">根据不同的实际需求设置</div><div class="line"></div><div class="line"><span class="comment">// step4: 绑定到DOM元素上，此时这个事件就跻身“官方事件”</span></div><div class="line">$(dom).addEvent(eventName,<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(<span class="string">'hahahaha'</span>)!</div><div class="line">&#125;, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="comment">// step5: 触发事件</span></div><div class="line">$(dom)dispatchEvent(event)  <span class="comment">// 所有支持事件的DOM节点都支持这个方法。调用dispatchEvent（）方法时，需要传入一个参数，即表示要触发事件的event对象。</span></div></pre></td></tr></table></figure>
+<p>所以综上：DOM中的事件模拟，包括</p>
+<ol>
+<li>创建一个指定类型的事件实例</li>
+<li>初始化事件：事件名称，是否冒泡，是否阻止事件的默认行为</li>
+<li>设置事件对象的属性（模拟那些已有的，可以在事件处理程序中通过传参获得）</li>
+<li>注册事件</li>
+<li>触发事件</li>
+</ol>
+<h3 id="如何理解触发事件？"><a href="#如何理解触发事件？" class="headerlink" title="如何理解触发事件？"></a>如何理解触发事件？</h3><p>对于dispatchEvent触发的理解——任何点击、<br>各种交互其实都只是形式，形式内在也是封装了dispatch（）罢了</p>
+<h3 id="为什么要模拟DOM事件？"><a href="#为什么要模拟DOM事件？" class="headerlink" title="为什么要模拟DOM事件？"></a>为什么要模拟DOM事件？</h3><p>大部分事件本身是由用户交互来触发的，但是有些时候我们想让程序自己来触发事件，这个时候就需要手动调用函数来实现触发事件，并传入参数event，作为当这个事件触发时传递出去的信息。</p>
+<h3 id="有什么用"><a href="#有什么用" class="headerlink" title="有什么用?"></a>有什么用?</h3><p><strong>这个触发事件的机制由我们自己来决定了，我们可以设置自己的条件逻辑</strong></p>
+<p>eg：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if(...) &#123;</div><div class="line">  Element.dispatchEvent(e)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后对这个事件有监听的DOM元素就会被监听到，此时事件处理程序响应。</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>如果是模拟一些比较复杂的DOM事件，比如鼠标事件，官方提供了很多事件对象的属性，用于在模拟的鼠标事件发生时传递一些信息：包括元素相对于屏幕，视口的坐标等…</p>
+<h2 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h2><ul>
+<li>自定义事件的本质：观察者模式</li>
+<li>基于原生事件，触发依赖于原生事件的触发机制</li>
+<li>自定义事件没有浏览器帮你，需要自行设置触发</li>
+<li>为什么要有自定义事件？站在一个更高的层次上进行封装和对客观世界的描述，比如我们会说 点击盒子触发xx事件，而不会说点击某个div，btn这样的DOM节点</li>
+<li>优点：跳出原生事件的限制，提高了封装的抽象层级</li>
+<li>对比原生事件：</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/事件/" rel="tag"># 事件</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/08/HTML5-historyAPI/" rel="next" title="HTML5 historyAPI">
+                <i class="fa fa-chevron-left"></i> HTML5 historyAPI
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400"
+               alt="aruisi" />
+          <p class="site-author-name" itemprop="name">aruisi</p>
+           
+              <p class="site-description motion-element" itemprop="description">欢迎来到我的个人站</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sr6783" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript事件"><span class="nav-number">1.</span> <span class="nav-text">JavaScript事件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是事件流？什么是IE事件流？IE事件流和DOM事件流的区别是什么？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是事件流？什么是IE事件流？IE事件流和DOM事件流的区别是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#假如一个元素既注册了冒泡，也注册了捕获，是捕获先被触发呢还是冒泡先被触发呢？"><span class="nav-number">1.1.1.</span> <span class="nav-text">假如一个元素既注册了冒泡，也注册了捕获，是捕获先被触发呢还是冒泡先被触发呢？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对事件流和事件处理程序的理解"><span class="nav-number">1.2.</span> <span class="nav-text">对事件流和事件处理程序的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么我们通常在冒泡阶段调用处理程序？"><span class="nav-number">1.3.</span> <span class="nav-text">为什么我们通常在冒泡阶段调用处理程序？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件冒泡的意义以及应用"><span class="nav-number">1.4.</span> <span class="nav-text">事件冒泡的意义以及应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#event对象为什么这么重要呢？"><span class="nav-number">1.5.</span> <span class="nav-text">event对象为什么这么重要呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于currentTarget和target属性"><span class="nav-number">1.6.</span> <span class="nav-text">关于currentTarget和target属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义事件和DOM中的事件模拟"><span class="nav-number">1.7.</span> <span class="nav-text">自定义事件和DOM中的事件模拟</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM中的事件模拟"><span class="nav-number">1.7.1.</span> <span class="nav-text">DOM中的事件模拟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何理解触发事件？"><span class="nav-number">1.7.2.</span> <span class="nav-text">如何理解触发事件？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要模拟DOM事件？"><span class="nav-number">1.7.3.</span> <span class="nav-text">为什么要模拟DOM事件？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有什么用"><span class="nav-number">1.7.4.</span> <span class="nav-text">有什么用?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充"><span class="nav-number">1.7.5.</span> <span class="nav-text">补充</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义事件"><span class="nav-number">1.8.</span> <span class="nav-text">自定义事件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aruisi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
