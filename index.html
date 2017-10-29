@@ -539,14 +539,61 @@
 
       
         
-          <h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>HTTP 重定向<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/21/HTTP状态码之3XX/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>HTTP 重定向 </p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>3XX 状态码都是重定向相关，但是不同的3XX有着不同的区别，导致使用场景上的区别，当我们设置重定向的时候，这点尤为重要。之前做了个服务器处理表单的代码，体会到了不同状态码的区别。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 添加中间件处理POST请求表单</span></div><div class="line">app.use(<span class="built_in">require</span>(<span class="string">'body-parser'</span>)());</div><div class="line">app.get(<span class="string">'/newsletter'</span>,(req, res) =&gt; &#123;</div><div class="line">  </div><div class="line">  res.render(<span class="string">'newsletter'</span>,&#123;<span class="attr">csrf</span>: <span class="string">'CSRF token goes here'</span>&#125;);</div><div class="line">&#125;);</div><div class="line">app.post(<span class="string">'/process'</span>,(req, res) =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Form (form querystring): '</span> + req.query.form);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'CSRF token (from hidden from field): '</span> + req.body._csrf);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Name (from visiable from field): '</span> + req.body.email);</div><div class="line">  res.redirect(<span class="number">303</span>, <span class="string">'/thanks-you'</span>);  <span class="comment">// 这里用到了重定向</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="301-和-302，303的区别"><a href="#301-和-302，303的区别" class="headerlink" title="301 和 302，303的区别"></a>301 和 302，303的区别</h2><p>在一般表单提交中，我们往往通过重定向的方式提供一个新的视图，而如果不通过重定向的方式渲染视图，访问者的地址栏仍旧不会变，这是不好的。在这种情况下使用<code> 303(或 302) </code>重定向，而不是<code> 301 </code>重定向，这一点非常 重要。<code> 301 </code>重定向是“永久”的，意味着浏览器会缓存重定向目标。如果使 用<code> 301 </code>重定向并且试图第二次提交表单，浏览器会绕过整个<code> /process </code>处理程序直接进入/<code>thank you</code>页面，因为它正确地认为重定向是永久性的。另一方面，<code> 303 </code>重定向告诉浏览器“是的，你的请求有效，可以在这里找到响应”， 并且不会缓存重定向目标。</p>
+<h2 id="301-Moved-Permanently"><a href="#301-Moved-Permanently" class="headerlink" title="301 Moved Permanently"></a>301 Moved Permanently</h2><blockquote>
+<p>永久性重定向。该状态码表示请求的资源已经被分配到了新的 URI ，以后应该使用资源所指向的 URI 。也就是说，如果已经把资源对应的 URI 保存为书签了，这时应该按 Location 首部字段提示的 URI 重新保存。</p>
+</blockquote>
+<p>理解：<br>显然301这种重定向适用于的场景不适合表单跳转，而是需要更换域名或有多个域名指向一个网站。或者多个网站想合并到一个主域名。比如新浪微博就是有多个域名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">t.sina.com.cn</div><div class="line">weibo.com</div></pre></td></tr></table></figure>
+<h3 id="为什么一定要用301跳转？"><a href="#为什么一定要用301跳转？" class="headerlink" title="为什么一定要用301跳转？"></a>为什么一定要用301跳转？</h3><p>如果使用head标签内meta refresh或者JS跳转或302转向,这样很容易被百度或其他搜索引擎视为作弊被惩罚降权。这时要是用301重定向。</p>
+<p>百度收录的地址大部分是旧域名下的链接，此时相当于流量和权重都在旧域名，那么主域名就很不划算，要做301转向。</p>
+<p>原域名被百度k掉，要做301重定向。什么意思，就是说，旧域名被k，会有很长时间不被收录，那么启用新域名，把原来的域名做301转向即可。</p>
+<h3 id="PS：有www和无www域名："><a href="#PS：有www和无www域名：" class="headerlink" title="PS：有www和无www域名："></a>PS：有www和无www域名：</h3><p>www.gw020.com 和gw020.com 其实是2个不同的域名，就是说带有www的域名其实只是个二级域名。因为非常常用，所以习惯必须有www。而对于搜索引擎来说，这是2个域名，所以会出现经常是没有www的域名被收录很多，而有www的域名没有被收录，或者收录量完全想法或不同。如果很在意这个流量转化和权重集中，可以把其中一个做301重定向。方法同上。</p>
+<h2 id="302-Found"><a href="#302-Found" class="headerlink" title="302 Found"></a>302 Found</h2><blockquote>
+<p>302状态码主要是提示该次为临时重定向，故而除非特别指定了缓存头部指示，该状态码不可缓存。对于服务器，通常会给浏览器发送HTTP Location头部来重定向到新的新位置。</p>
+</blockquote>
+<p>那么言下之意是什么呢？就意味着资源不是被永久移动，已移动的资源的URI将来还可能发生改变。</p>
+<h3 id="302状态码的特征"><a href="#302状态码的特征" class="headerlink" title="302状态码的特征"></a>302状态码的特征</h3><p>其特征被定义为：</p>
+<ul>
+<li><p>客户端收到的新的 URI，不是原始请求资源的替代引用。<br>只有当服务器发出 Cache-Control 或 Expires 头字段进行指示，此响应才能被缓存，否则不能被缓存。</p>
+</li>
+<li><p>临时URI应该由响应头部中的 Location 字段给出。<br>除非请求方法是 HEAD ，否则响应的实体应该包含一个带有超链接到新的URI的短 HTML 注释。</p>
+</li>
+<li><p>如果在除 GET 或 HEAD 两种请求方法之外的请求时，接收到302状态码，客户端不得自动重定向请求，除非用户可以确认；否则可能会更改发出请求的条件。</p>
+</li>
+<li><p>如果一个客户端有链接编辑能力，其应当把所有的引用链接重定向到新的URL上。</p>
+</li>
+<li><p>重定向到新地址时，客户端必须使用GET方法请求新地址。</p>
+</li>
+</ul>
+<p>从维基百科中看到并不推荐使用302状态码，这是为什么呢？</p>
+<h3 id="302-重定向和网址劫持（URL-hijacking）"><a href="#302-重定向和网址劫持（URL-hijacking）" class="headerlink" title="302 重定向和网址劫持（URL hijacking）"></a>302 重定向和网址劫持（URL hijacking）</h3><p><a href="https://baike.baidu.com/item/302%E9%87%8D%E5%AE%9A%E5%90%91/5418890?fr=aladdin#2" target="_blank" rel="external">302 重定向和网址劫持（URL hijacking）</a></p>
+<h3 id="为什么不推荐使用，但还是存在302呢？"><a href="#为什么不推荐使用，但还是存在302呢？" class="headerlink" title="为什么不推荐使用，但还是存在302呢？"></a>为什么不推荐使用，但还是存在302呢？</h3><p>虽然 RFC 1945 和 RFC 2068 两个规范不允许客户端在重定向时改变请求的方法，但是很多现存的浏览器将302响应视作为 303响应 ，并且径自使用 GET 方式访问在 Location 中规定的 URI，而无视原先请求的方法，这是不规范的实现。</p>
+<p>因此状态码303和307被添加了进来，用以明确服务器期待客户端进行何种反应。</p>
+<h2 id="303和307的由来"><a href="#303和307的由来" class="headerlink" title="303和307的由来"></a>303和307的由来</h2><p> 从上面的介绍可以知道，HTTP1.1和HTTP1.0的302状态码意义是一样的，浏览器对它的处理也是一样的。POST方法的重定向在未询问用户的情况下就变成GET，这种不符合文档规范的问题依然存在。实践在前而文档在后，HTTP1.1把这种POST变GET的行为纳入了RFC文档：HTTP1.1新加入303和307状态码。</p>
+<p>文档中规定303状态码的响应，也就是上边提到的现在浏览器对302状态码的处理：POST重定向为GET。</p>
+<p>HTTP1.1文档中307状态码则相当于HTTP1.0文档中的302状态码，当客户端的POST请求收到服务端307状态码响应时，需要跟用户询问是否应该在新URI上发起POST方法，也就是说，307是不会把POST转为GET的。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>303和307是HTTP1.1新加的服务器响应文档的状态码，它们是对HTTP1.0中的302状态码的细化，主要用在对非GET、HEAD方法的响应上。文档规定：<strong>浏览器对303状态码的处理跟原来浏览器对HTTP1.0的302状态码的处理方法一样；浏览器对307状态码处理则跟原来HTTP1.0文档里对302的描述一样</strong>。 </p>
+<font color="red">303和307的存在，归根结底是由于POST方法的非幂等属性引起的。</font>
+
+<p>在HTTP1.1中，302理论上是要被放弃掉的，它被细化为303和307，但为了兼容，它目前还在业界中大量使用，而303和307状态码我还没遇到过（没有使用场景，也没抓到过这样的响应报文）。为什么业界少使用303和307呢？对于GET和HEAD方法来说，307是没必要存在的，用302或者303就可以满足需求了，307仅在POST方法的重定向上有用处。所以我猜测它们少见的原因有两方面：1、POST方法重定向的使用场景太少，使得307状态码没有用武之地；2、GET方法虽然常需要使用的重定向，但使用302状态码也能正确运转，再考虑到微乎其微的兼容问题（现在的浏览器怎么可能不支持HTTP1.1呢！），也就没有使用303的必要了。</p>
+<p>参考：</p>
+<ol>
+<li><p>《图解HTTP协议》</p>
+</li>
+<li><p><a href="https://zh.wikipedia.org/wiki/HTTP_302" target="_blank" rel="external">维基百科 - HTTP - 302</a></p>
+</li>
+<li><p><a href="http://blog.sina.com.cn/s/blog_622d80bc0100m2i9.html" target="_blank" rel="external">何时应该使用301重定向？</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/cswuyg/p/3871976.html" target="_blank" rel="external">HTTP状态码302、303和307的故事</a></p>
+</li>
+</ol>
+
+          
         
       
     </div>
@@ -1583,7 +1630,7 @@
 
       
         
-          <h3 id="相关关键词"><a href="#相关关键词" class="headerlink" title="相关关键词"></a>相关关键词</h3><p> <strong>表达式 优先级 结合性 执行顺序 求值顺序</strong><br>
+          <p>关键词<br> <strong>表达式 优先级 结合性 执行顺序 求值顺序</strong><br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/10/JavaScript运算符/#more" rel="contents">
