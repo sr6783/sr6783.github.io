@@ -97,7 +97,7 @@
 <meta property="og:description" content="关键字HTTP 重定向 
 前言3XX 状态码都是重定向相关，但是不同的3XX有着不同的区别，导致使用场景上的区别，当我们设置重定向的时候，这点尤为重要。之前做了个服务器处理表单的代码，体会到了不同状态码的区别。
 123456789101112// 添加中间件处理POST请求表单app.use(require(&apos;body-parser&apos;)());app.get(&apos;/newsletter&apos;,(req,">
-<meta property="og:updated_time" content="2017-10-29T11:04:30.000Z">
+<meta property="og:updated_time" content="2017-11-07T03:54:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP状态码之3XX">
 <meta name="twitter:description" content="关键字HTTP 重定向 
@@ -396,6 +396,7 @@
         <h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>HTTP 重定向 </p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>3XX 状态码都是重定向相关，但是不同的3XX有着不同的区别，导致使用场景上的区别，当我们设置重定向的时候，这点尤为重要。之前做了个服务器处理表单的代码，体会到了不同状态码的区别。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 添加中间件处理POST请求表单</span></div><div class="line">app.use(<span class="built_in">require</span>(<span class="string">'body-parser'</span>)());</div><div class="line">app.get(<span class="string">'/newsletter'</span>,(req, res) =&gt; &#123;</div><div class="line">  </div><div class="line">  res.render(<span class="string">'newsletter'</span>,&#123;<span class="attr">csrf</span>: <span class="string">'CSRF token goes here'</span>&#125;);</div><div class="line">&#125;);</div><div class="line">app.post(<span class="string">'/process'</span>,(req, res) =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Form (form querystring): '</span> + req.query.form);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'CSRF token (from hidden from field): '</span> + req.body._csrf);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Name (from visiable from field): '</span> + req.body.email);</div><div class="line">  res.redirect(<span class="number">303</span>, <span class="string">'/thanks-you'</span>);  <span class="comment">// 这里用到了重定向</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="301-和-302，303的区别"><a href="#301-和-302，303的区别" class="headerlink" title="301 和 302，303的区别"></a>301 和 302，303的区别</h2><p>在一般表单提交中，我们往往通过重定向的方式提供一个新的视图，而如果不通过重定向的方式渲染视图，访问者的地址栏仍旧不会变，这是不好的。在这种情况下使用<code> 303(或 302) </code>重定向，而不是<code> 301 </code>重定向，这一点非常 重要。<code> 301 </code>重定向是“永久”的，意味着浏览器会缓存重定向目标。如果使 用<code> 301 </code>重定向并且试图第二次提交表单，浏览器会绕过整个<code> /process </code>处理程序直接进入/<code>thank you</code>页面，因为它正确地认为重定向是永久性的。另一方面，<code> 303 </code>重定向告诉浏览器“是的，你的请求有效，可以在这里找到响应”， 并且不会缓存重定向目标。</p>
 <h2 id="301-Moved-Permanently"><a href="#301-Moved-Permanently" class="headerlink" title="301 Moved Permanently"></a>301 Moved Permanently</h2><blockquote>
 <p>永久性重定向。该状态码表示请求的资源已经被分配到了新的 URI ，以后应该使用资源所指向的 URI 。也就是说，如果已经把资源对应的 URI 保存为书签了，这时应该按 Location 首部字段提示的 URI 重新保存。</p>
