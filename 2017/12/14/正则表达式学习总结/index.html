@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="阿瑞斯的BLOG">
 <meta property="og:description" content="正则表达式学习总结">
 <meta property="og:image" content="http://p0w4c0e5i.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E7%96%91%E6%83%91.png">
-<meta property="og:updated_time" content="2017-12-14T14:11:37.000Z">
+<meta property="og:updated_time" content="2017-12-14T15:03:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式学习总结">
 <meta name="twitter:description" content="正则表达式学习总结">
@@ -390,9 +390,25 @@
 
       
         <h1 id="正则表达式学习总结"><a href="#正则表达式学习总结" class="headerlink" title="正则表达式学习总结"></a>正则表达式学习总结</h1><a id="more"></a>
-<h2 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h2><p>1.又叫规则表达式，它是用代码来准确表述一些我们语言上描述的规则，比如：用代码描述多个0，多个0就叫模式，规则</p>
-<p>2.谈正则肯定离不开字符串</p>
-<p>3.正则表达式最难理解的地方在于等价这个概念，这个概念增加了理解难度，如果把等价都恢复成原始写法，自己书写正则就超级简单了，就像说话一样去写你的正则了</p>
+<h2 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h2><ol>
+<li><p>又叫规则表达式，它是用代码来准确表述一些我们语言上描述的规则，比如：用代码描述多个0，多个0就叫模式，规则</p>
+</li>
+<li><p>谈正则肯定离不开字符串</p>
+</li>
+<li><p>正则表达式最难理解的地方在于等价这个概念，这个概念增加了理解难度，如果把等价都恢复成原始写法，自己书写正则就超级简单了，就像说话一样去写你的正则了</p>
+</li>
+<li><p>正则表达式除了匹配字符以外，还可以<strong>匹配位置</strong></p>
+</li>
+<li><p>指定匹配的位置(<font color="red"><strong>实际上就是为了不断章取义</strong></font>)</p>
+</li>
+</ol>
+<p>我们已经看到了,一个正则表达式中的许多元素才能够匹配字符串的一个字符.<br>例如: \s 匹配的只是一个空白符.还有一些正则表达式的元素匹配的是字符之间宽度为0的空间,而不是实际的字符例如: \b 匹配的是一个词语的边界,也就是处于一个/w字字符和一个\w非字字符之间的边界.像\b 这样的字符并不指定任何一个匹配了的字符串中的字符,它们指定的是匹配所发生的合法位置.有时我们称这些元素为正则表达式的锚.因为它们将模式定位在检索字符串中的一个特定位置.最常用的锚元素是 ^, 它使模式依赖于字符串的开头,而锚元素$则使模式定位在字符串的末尾.</p>
+<p>例如:要匹配词 “javascript” ,我们可以使用正则表达式 /^ javascript $/. 如果我们想检索 “java” 这个词自身 (不像在 “javascript” 中那样作为前缀),那么我们可以使用模式 /\s java \s /, 它要求在词语java之前和之后都有空格.但是这样作有两个问题.第一: 如果 “java” 出现在一个字符的开头或者是结尾.该模式就不会与之匹配,除非在开头和结尾处有一个空格. 第二: 当这个模式找到一个与之匹配的字符时,它返回的匹配的字符串前端和后端都有空格,这并不是我们想要的.因此,我们使用词语的边界 \b 来代替真正的空格符 \s 进行匹配. 结果表达式是 /\b java \b/.<br>下面是正则表达式的锚字符:<br>字符 含义 </p>
+<hr>
+<p>^ 匹配的是字符的开头,在多行检索中,匹配的是一行的开头 </p>
+<p>$ 匹配的是字符的结尾,在多行检索中,匹配的是一行的结尾 </p>
+<p>\b 匹配的是一个词语的边界.简而言之就是位于字符\w 和 \w之间的位置(注意:[\b]匹配的是退格符) </p>
+<p>\B 匹配的是非词语的边界的字符 </p>
 <h2 id="正则表达式的特点"><a href="#正则表达式的特点" class="headerlink" title="正则表达式的特点"></a>正则表达式的特点</h2><ol>
 <li><p>灵活性、逻辑性和功能性非常的强；</p>
 </li>
@@ -400,6 +416,42 @@
 </li>
 </ol>
 <p>由于正则表达式主要应用对象是文本，因此它在各种文本编辑器场合都有应用，小到著名编辑器EditPlus，大到Microsoft Word、Visual Studio等大型编辑器，都可以使用正则表达式来处理文本内容。</p>
+<h2 id="规则总结"><a href="#规则总结" class="headerlink" title="规则总结"></a>规则总结</h2><ol>
+<li><p>正则表达式中最小单位是字符</p>
+</li>
+<li><p>反斜杠(\ )总是对后面的字符起作用</p>
+</li>
+<li><p>大括号({})总是对前面的<del>字符</del><strong>表达式</strong>起修饰作用</p>
+<p>PS： <font color="red"><strong>关于字符与表达式的区别，用表达式更准确，因为如果存在分组的情况时，大括号作用的目标就是一个单元而非一个字符</strong></font></p>
+</li>
+<li><p>问号，加号，星号(? + *)就是大括号的特殊情况，也就是等价写法</p>
+</li>
+<li><p>中括号([])不是对前面和后面起作用的，而是占了一个字符的位置</p>
+</li>
+<li><p>小括号()的作用很强大</p>
+<ul>
+<li><p>分组:被小括号包裹的n个字符会被视为一个字符(专业术语:单元),这样可以方便? + *的整体匹配</p>
+<ul>
+<li><p>在完整模式中定义子模式：(场景：一堆图片要重命名,文件名是截屏图片xxx2016,我们要把2016改成2017，首先我们不能直接找2016，因为这样的话会找到别的带有2016字样的文件，所以我们肯定是先匹配所有的”截屏图片xxx2016”这个模式，也就是完整模式,然后通过这个模式下再去找我们要的核心:2016，最后再进行替换操作,而2016就是子模式)</p>
+</li>
+<li><p>引用：用()分组以后，再后面用反斜杠+数字可以取得对前面小括号的引用，注意：引用的不是模式而是相同的文本</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>|：竖线不单独对一个字符起作用，而是划分选项(专业术语:指定分组项),要么是左边的表达式，要么是右边的表达式</p>
+</li>
+<li><p>()是为了提取字符串，[]定义范围，{}定义长度</p>
+</li>
+<li><p>常用的特殊元字符以及在正则表达式种的行为</p>
+<table><br> <tr><br>   <th>元字符</th><br>   <th>行为</th><br> </tr><br> <tr><br>   <td>^</td><br>   <td>开始位置</td><br> </tr><br> <tr><br>   <td>$</td><br>   <td>结束位置</td><br> </tr><br>  <tr><br>   <td>*</td><br>   <td>量词，等价于{0,}</td><br> </tr><br> <tr><br>   <td>+</td><br>   <td>量词，等价于{1,}</td><br> </tr><br> <tr><br>   <td>?</td><br>   <td>量词，等价于{0,1}</td><br> </tr><br>  <tr><br>   <td>?</td><br>   <td>特殊用法放在其他量词之后用于取消贪婪模式</td><br> </tr><br> <tr><br>   <td>.</td><br>   <td>除 “\n” 之外的任何单个字符</td><br> </tr><br> <tr><br>   <td>\b</td><br>   <td>匹配一个位置，单词边界</td><br> </tr><br>  <tr><br>   <td>\B</td><br>   <td>匹配一个位置，非单词边界</td><br> </tr><br>  <tr><br>   <td>\s</td><br>   <td>匹配任何不可见字符，包括空格</td><br> </tr><br></table>
+</li>
+<li><p>正则表达式种不能用空格匹配空格，需要用\s匹配空格</p>
+</li>
+</ol>
+<h3 id="Q：什么是贪婪模式？"><a href="#Q：什么是贪婪模式？" class="headerlink" title="Q：什么是贪婪模式？"></a>Q：什么是贪婪模式？</h3><p>所谓贪婪模式，就是满足匹配条件的情况下，会尽可能多地匹配所搜索的字符串。例如，对于字符串 ‘oooooo’ ，’o+?’ 将匹配单个’o’，而 ‘o+’ 将匹配所有的o。</p>
+<h4 id="这是为什么？"><a href="#这是为什么？" class="headerlink" title="这是为什么？"></a>这是为什么？</h4><p>这就是 ？号的特殊用法，当它放在<strong>其他量词</strong>(*, +, ?, {n}, {n,}, {n,m}) 后面，会取消贪婪模式，即尽可能少地进行匹配</p>
 <h2 id="正则表达式的应用场景"><a href="#正则表达式的应用场景" class="headerlink" title="正则表达式的应用场景"></a>正则表达式的应用场景</h2><p>配合字符串使用</p>
 <h3 id="1-检查字符串中是否包含指定的模式，常用于：替换操作的第一步-邮箱验证"><a href="#1-检查字符串中是否包含指定的模式，常用于：替换操作的第一步-邮箱验证" class="headerlink" title="1.检查字符串中是否包含指定的模式，常用于：替换操作的第一步 | 邮箱验证"></a>1.检查字符串中是否包含指定的<strong>模式</strong>，常用于：替换操作的第一步 | 邮箱验证</h3><p>【1】模式：简单理解就是检查字符串中是否包含指定的值，这里用模式这个词更准确，因为它可以表示用于泛指，模糊匹配，范围更广，比如是否包含多个0，这句话用代码就不能用指定的值来表示，因为1个0也是0，多个0也是0</p>
 <p><code>RegExp.test(String)</code>返回布尔值true/false，在只想知道目标字符串与某个模式是否匹配，但不需要知道其文本内容的情况下，这个方法非常有用。</p>
@@ -611,7 +663,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正则表达式学习总结"><span class="nav-number">1.</span> <span class="nav-text">正则表达式学习总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#心得"><span class="nav-number">1.1.</span> <span class="nav-text">心得</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的特点"><span class="nav-number">1.2.</span> <span class="nav-text">正则表达式的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的应用场景"><span class="nav-number">1.3.</span> <span class="nav-text">正则表达式的应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-检查字符串中是否包含指定的模式，常用于：替换操作的第一步-邮箱验证"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.检查字符串中是否包含指定的模式，常用于：替换操作的第一步 | 邮箱验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何用文字表达正则语法？"><span class="nav-number">1.3.3.</span> <span class="nav-text">如何用文字表达正则语法？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q-为什么-RegExp-1-就指代了-y"><span class="nav-number">1.3.4.</span> <span class="nav-text">Q: 为什么 RegExp.$1 就指代了 /y+/?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-3-RegExp构造函数属性"><span class="nav-number">1.3.5.</span> <span class="nav-text">5.4.3 RegExp构造函数属性</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正则表达式学习总结"><span class="nav-number">1.</span> <span class="nav-text">正则表达式学习总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#心得"><span class="nav-number">1.1.</span> <span class="nav-text">心得</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的特点"><span class="nav-number">1.2.</span> <span class="nav-text">正则表达式的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规则总结"><span class="nav-number">1.3.</span> <span class="nav-text">规则总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q：什么是贪婪模式？"><span class="nav-number">1.3.1.</span> <span class="nav-text">Q：什么是贪婪模式？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这是为什么？"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">这是为什么？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的应用场景"><span class="nav-number">1.4.</span> <span class="nav-text">正则表达式的应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-检查字符串中是否包含指定的模式，常用于：替换操作的第一步-邮箱验证"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.检查字符串中是否包含指定的模式，常用于：替换操作的第一步 | 邮箱验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何用文字表达正则语法？"><span class="nav-number">1.4.3.</span> <span class="nav-text">如何用文字表达正则语法？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q-为什么-RegExp-1-就指代了-y"><span class="nav-number">1.4.4.</span> <span class="nav-text">Q: 为什么 RegExp.$1 就指代了 /y+/?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-3-RegExp构造函数属性"><span class="nav-number">1.4.5.</span> <span class="nav-text">5.4.3 RegExp构造函数属性</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
