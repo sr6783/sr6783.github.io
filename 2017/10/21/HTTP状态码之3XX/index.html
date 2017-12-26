@@ -87,22 +87,22 @@
 
 
 
-<meta name="description" content="关键字HTTP 重定向 
+<meta name="description" content="关键词 HTTP 重定向 
 前言3XX 状态码都是重定向相关，但是不同的3XX有着不同的区别，导致使用场景上的区别，当我们设置重定向的时候，这点尤为重要。之前做了个服务器处理表单的代码，体会到了不同状态码的区别。
-123456789101112// 添加中间件处理POST请求表单app.use(require(&apos;body-parser&apos;)());app.get(&apos;/newsletter&apos;,(req,">
+123456789101112// 添加中间件处理POST请求表单app.use(require(&apos;body-parser&apos;)());app.get(&apos;/newsletter&apos;,(req">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTP状态码之3XX">
 <meta property="og:url" content="http://yoursite.com/2017/10/21/HTTP状态码之3XX/index.html">
 <meta property="og:site_name" content="阿瑞斯的BLOG">
-<meta property="og:description" content="关键字HTTP 重定向 
+<meta property="og:description" content="关键词 HTTP 重定向 
 前言3XX 状态码都是重定向相关，但是不同的3XX有着不同的区别，导致使用场景上的区别，当我们设置重定向的时候，这点尤为重要。之前做了个服务器处理表单的代码，体会到了不同状态码的区别。
-123456789101112// 添加中间件处理POST请求表单app.use(require(&apos;body-parser&apos;)());app.get(&apos;/newsletter&apos;,(req,">
-<meta property="og:updated_time" content="2017-11-07T03:54:43.000Z">
+123456789101112// 添加中间件处理POST请求表单app.use(require(&apos;body-parser&apos;)());app.get(&apos;/newsletter&apos;,(req">
+<meta property="og:updated_time" content="2017-12-26T07:20:39.481Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP状态码之3XX">
-<meta name="twitter:description" content="关键字HTTP 重定向 
+<meta name="twitter:description" content="关键词 HTTP 重定向 
 前言3XX 状态码都是重定向相关，但是不同的3XX有着不同的区别，导致使用场景上的区别，当我们设置重定向的时候，这点尤为重要。之前做了个服务器处理表单的代码，体会到了不同状态码的区别。
-123456789101112// 添加中间件处理POST请求表单app.use(require(&apos;body-parser&apos;)());app.get(&apos;/newsletter&apos;,(req,">
+123456789101112// 添加中间件处理POST请求表单app.use(require(&apos;body-parser&apos;)());app.get(&apos;/newsletter&apos;,(req">
 
 
 
@@ -393,7 +393,7 @@
       
 
       
-        <h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>HTTP 重定向 </p>
+        <p>关键词<br> <strong>HTTP 重定向</strong> </p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>3XX 状态码都是重定向相关，但是不同的3XX有着不同的区别，导致使用场景上的区别，当我们设置重定向的时候，这点尤为重要。之前做了个服务器处理表单的代码，体会到了不同状态码的区别。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 添加中间件处理POST请求表单</span></div><div class="line">app.use(<span class="built_in">require</span>(<span class="string">'body-parser'</span>)());</div><div class="line">app.get(<span class="string">'/newsletter'</span>,(req, res) =&gt; &#123;</div><div class="line">  </div><div class="line">  res.render(<span class="string">'newsletter'</span>,&#123;<span class="attr">csrf</span>: <span class="string">'CSRF token goes here'</span>&#125;);</div><div class="line">&#125;);</div><div class="line">app.post(<span class="string">'/process'</span>,(req, res) =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Form (form querystring): '</span> + req.query.form);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'CSRF token (from hidden from field): '</span> + req.body._csrf);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Name (from visiable from field): '</span> + req.body.email);</div><div class="line">  res.redirect(<span class="number">303</span>, <span class="string">'/thanks-you'</span>);  <span class="comment">// 这里用到了重定向</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -630,7 +630,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关键字"><span class="nav-number">1.</span> <span class="nav-text">关键字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number"></span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#301-和-302，303的区别"><span class="nav-number"></span> <span class="nav-text">301 和 302，303的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#301-Moved-Permanently"><span class="nav-number"></span> <span class="nav-text">301 Moved Permanently</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么一定要用301跳转？"><span class="nav-number">1.</span> <span class="nav-text">为什么一定要用301跳转？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PS：有www和无www域名："><span class="nav-number">2.</span> <span class="nav-text">PS：有www和无www域名：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#302-Found"><span class="nav-number"></span> <span class="nav-text">302 Found</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#302状态码的特征"><span class="nav-number">1.</span> <span class="nav-text">302状态码的特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#302-重定向和网址劫持（URL-hijacking）"><span class="nav-number">2.</span> <span class="nav-text">302 重定向和网址劫持（URL hijacking）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么不推荐使用，但还是存在302呢？"><span class="nav-number">3.</span> <span class="nav-text">为什么不推荐使用，但还是存在302呢？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#303和307的由来"><span class="nav-number"></span> <span class="nav-text">303和307的由来</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#301-和-302，303的区别"><span class="nav-number">2.</span> <span class="nav-text">301 和 302，303的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#301-Moved-Permanently"><span class="nav-number">3.</span> <span class="nav-text">301 Moved Permanently</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么一定要用301跳转？"><span class="nav-number">3.1.</span> <span class="nav-text">为什么一定要用301跳转？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PS：有www和无www域名："><span class="nav-number">3.2.</span> <span class="nav-text">PS：有www和无www域名：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#302-Found"><span class="nav-number">4.</span> <span class="nav-text">302 Found</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#302状态码的特征"><span class="nav-number">4.1.</span> <span class="nav-text">302状态码的特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#302-重定向和网址劫持（URL-hijacking）"><span class="nav-number">4.2.</span> <span class="nav-text">302 重定向和网址劫持（URL hijacking）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么不推荐使用，但还是存在302呢？"><span class="nav-number">4.3.</span> <span class="nav-text">为什么不推荐使用，但还是存在302呢？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#303和307的由来"><span class="nav-number">5.</span> <span class="nav-text">303和307的由来</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.1.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="闭包中使用this存在的问题关键词: 闭包 函数声明时 函数运行时 词法作用域 特殊变量 箭头函数">
+<meta name="description" content="关键词  闭包 函数声明时 函数运行时 词法作用域 特殊变量 箭头函数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="闭包中使用this存在的问题">
 <meta property="og:url" content="http://yoursite.com/2017/05/16/闭包中使用this存在的问题/index.html">
 <meta property="og:site_name" content="阿瑞斯的BLOG">
-<meta property="og:description" content="闭包中使用this存在的问题关键词: 闭包 函数声明时 函数运行时 词法作用域 特殊变量 箭头函数">
-<meta property="og:updated_time" content="2017-10-19T08:15:44.000Z">
+<meta property="og:description" content="关键词  闭包 函数声明时 函数运行时 词法作用域 特殊变量 箭头函数">
+<meta property="og:updated_time" content="2017-12-26T07:21:51.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="闭包中使用this存在的问题">
-<meta name="twitter:description" content="闭包中使用this存在的问题关键词: 闭包 函数声明时 函数运行时 词法作用域 特殊变量 箭头函数">
+<meta name="twitter:description" content="关键词  闭包 函数声明时 函数运行时 词法作用域 特殊变量 箭头函数">
 
 
 
@@ -387,7 +387,7 @@
       
 
       
-        <h1 id="闭包中使用this存在的问题"><a href="#闭包中使用this存在的问题" class="headerlink" title="闭包中使用this存在的问题"></a>闭包中使用this存在的问题</h1><p>关键词: 闭包 函数声明时 函数运行时 词法作用域 特殊变量 箭头函数<br><a id="more"></a></p>
+        <p>关键词<br>  闭包 函数声明时 函数运行时 词法作用域 特殊变量 箭头函数<br><a id="more"></a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>也是为什么老是有<code>var that = this;</code>的写法以及箭头函数产生的原因。</p>
 <h2 id="闭包中使用this的问题"><a href="#闭包中使用this的问题" class="headerlink" title="闭包中使用this的问题"></a>闭包中使用this的问题</h2><p>在闭包中使用<code>this</code>是想和利用闭包的特性像引用其他其他变量一样引用保存外层函数的<code>this</code>，但是期望与现实是相反的。</p>
 <p>因为<code>this</code>是一个运行时基于函数的调用环境绑定的特殊变量。特别是，匿名函数的执行环境具有全局性。</p>
@@ -616,7 +616,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包中使用this存在的问题"><span class="nav-number">1.</span> <span class="nav-text">闭包中使用this存在的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包中使用this的问题"><span class="nav-number">1.2.</span> <span class="nav-text">闭包中使用this的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么this会指向undefined呢？"><span class="nav-number">1.2.1.</span> <span class="nav-text">为什么this会指向undefined呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#那么如何访问到这两个变量呢？"><span class="nav-number">1.2.2.</span> <span class="nav-text">那么如何访问到这两个变量呢？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6的箭头函数："><span class="nav-number">1.3.</span> <span class="nav-text">ES6的箭头函数：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#箭头函数最常用于回调函数，如事件处理器或定时器中"><span class="nav-number">1.4.</span> <span class="nav-text">箭头函数最常用于回调函数，如事件处理器或定时器中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对箭头函数的误解"><span class="nav-number">1.5.</span> <span class="nav-text">对箭头函数的误解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#是否局部（Lexical）？"><span class="nav-number">1.5.1.</span> <span class="nav-text">是否局部（Lexical）？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#箭头函数的注意"><span class="nav-number">1.6.</span> <span class="nav-text">箭头函数的注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">1.7.</span> <span class="nav-text">最后</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包中使用this的问题"><span class="nav-number">2.</span> <span class="nav-text">闭包中使用this的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么this会指向undefined呢？"><span class="nav-number">2.1.</span> <span class="nav-text">为什么this会指向undefined呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#那么如何访问到这两个变量呢？"><span class="nav-number">2.2.</span> <span class="nav-text">那么如何访问到这两个变量呢？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6的箭头函数："><span class="nav-number">3.</span> <span class="nav-text">ES6的箭头函数：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#箭头函数最常用于回调函数，如事件处理器或定时器中"><span class="nav-number">4.</span> <span class="nav-text">箭头函数最常用于回调函数，如事件处理器或定时器中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对箭头函数的误解"><span class="nav-number">5.</span> <span class="nav-text">对箭头函数的误解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#是否局部（Lexical）？"><span class="nav-number">5.1.</span> <span class="nav-text">是否局部（Lexical）？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#箭头函数的注意"><span class="nav-number">6.</span> <span class="nav-text">箭头函数的注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">7.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
 
           </div>

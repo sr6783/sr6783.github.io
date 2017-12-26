@@ -392,7 +392,7 @@
 
       
         
-          <p>关键词: 盒子模型(box model) 行盒(line box) 行内盒(inline boxes) 行高(line-height)<br>行内元素的垂直对齐(vertical-align) font-size font-family 字体度量</p>
+          <p>关键词<br>  盒子模型(box model) 行盒(line box) 行内盒(inline boxes) 行高(line-height)<br>行内元素的垂直对齐(vertical-align) font-size font-family 字体度量</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/12/25/行内元素的视觉化表现/#more" rel="contents">
@@ -539,103 +539,14 @@
 
       
         
-          
-            <a id="more"></a>
-<h2 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h2><ol>
-<li><p>又叫规则表达式，它是用代码来准确表述一些我们语言上描述的规则，比如：用代码描述多个0，多个0就叫模式，规则</p>
-</li>
-<li><p>谈正则肯定离不开字符串</p>
-</li>
-<li><p>正则表达式最难理解的地方在于等价这个概念，这个概念增加了理解难度，如果把等价都恢复成原始写法，自己书写正则就超级简单了，就像说话一样去写你的正则了</p>
-</li>
-<li><p>正则表达式除了匹配字符以外，还可以<strong>匹配位置</strong></p>
-</li>
-<li><p>指定匹配的位置(<font color="red"><strong>实际上就是为了不断章取义</strong></font>)</p>
-</li>
-</ol>
-<p>我们已经看到了,一个正则表达式中的许多元素才能够匹配字符串的一个字符.<br>例如: \s 匹配的只是一个空白符.还有一些正则表达式的元素匹配的是字符之间宽度为0的空间,而不是实际的字符例如: \b 匹配的是一个词语的边界,也就是处于一个/w字字符和一个\w非字字符之间的边界.像\b 这样的字符并不指定任何一个匹配了的字符串中的字符,它们指定的是匹配所发生的合法位置.有时我们称这些元素为正则表达式的锚.因为它们将模式定位在检索字符串中的一个特定位置.最常用的锚元素是 ^, 它使模式依赖于字符串的开头,而锚元素$则使模式定位在字符串的末尾.</p>
-<p>例如:要匹配词 “javascript” ,我们可以使用正则表达式 /^ javascript $/. 如果我们想检索 “java” 这个词自身 (不像在 “javascript” 中那样作为前缀),那么我们可以使用模式 /\s java \s /, 它要求在词语java之前和之后都有空格.但是这样作有两个问题.第一: 如果 “java” 出现在一个字符的开头或者是结尾.该模式就不会与之匹配,除非在开头和结尾处有一个空格. 第二: 当这个模式找到一个与之匹配的字符时,它返回的匹配的字符串前端和后端都有空格,这并不是我们想要的.因此,我们使用词语的边界 \b 来代替真正的空格符 \s 进行匹配. 结果表达式是 /\b java \b/.<br>下面是正则表达式的锚字符:<br>字符 含义 </p>
-<hr>
-<p>^ 匹配的是字符的开头,在多行检索中,匹配的是一行的开头 </p>
-<p>$ 匹配的是字符的结尾,在多行检索中,匹配的是一行的结尾 </p>
-<p>\b 匹配的是一个词语的边界.简而言之就是位于字符\w 和 \w之间的位置(注意:[\b]匹配的是退格符) </p>
-<p>\B 匹配的是非词语的边界的字符 </p>
-<h2 id="正则表达式的特点"><a href="#正则表达式的特点" class="headerlink" title="正则表达式的特点"></a>正则表达式的特点</h2><ol>
-<li><p>灵活性、逻辑性和功能性非常的强；</p>
-</li>
-<li><p>可以迅速地用极简单的方式达到字符串的复杂控制。</p>
-</li>
-</ol>
-<p>由于正则表达式主要应用对象是文本，因此它在各种文本编辑器场合都有应用，小到著名编辑器EditPlus，大到Microsoft Word、Visual Studio等大型编辑器，都可以使用正则表达式来处理文本内容。</p>
-<h2 id="规则总结"><a href="#规则总结" class="headerlink" title="规则总结"></a>规则总结</h2><ol>
-<li><p>正则表达式中最小单位是字符</p>
-</li>
-<li><p>反斜杠(\ )总是对后面的字符起作用</p>
-</li>
-<li><p>大括号({})总是对前面的<del>字符</del><strong>表达式</strong>起修饰作用</p>
-<p>PS： <font color="red"><strong>关于字符与表达式的区别，用表达式更准确，因为如果存在分组的情况时，大括号作用的目标就是一个单元而非一个字符</strong></font></p>
-</li>
-<li><p>问号，加号，星号(? + *)就是大括号的特殊情况，也就是等价写法</p>
-</li>
-<li><p>中括号([])不是对前面和后面起作用的，而是占了一个字符的位置</p>
-</li>
-<li><p>小括号()的作用很强大</p>
-<ul>
-<li><p>分组:被小括号包裹的n个字符会被视为一个字符(专业术语:单元),这样可以方便? + *的整体匹配</p>
-<ul>
-<li><p>在完整模式中定义子模式：(场景：一堆图片要重命名,文件名是截屏图片xxx2016,我们要把2016改成2017，首先我们不能直接找2016，因为这样的话会找到别的带有2016字样的文件，所以我们肯定是先匹配所有的”截屏图片xxx2016”这个模式，也就是完整模式,然后通过这个模式下再去找我们要的核心:2016，最后再进行替换操作,而2016就是子模式)</p>
-</li>
-<li><p>引用：用()分组以后，再后面用反斜杠+数字可以取得对前面小括号的引用，注意：引用的不是模式而是相同的文本</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>|：竖线不单独对一个字符起作用，而是划分选项(专业术语:指定分组项),要么是左边的表达式，要么是右边的表达式</p>
-</li>
-<li><p>()是为了提取字符串，[]定义范围，{}定义长度</p>
-</li>
-<li><p>常用的特殊元字符以及在正则表达式种的行为</p>
-<table><br> <tr><br>   <th>元字符</th><br>   <th>行为</th><br> </tr><br> <tr><br>   <td>^</td><br>   <td>开始位置</td><br> </tr><br> <tr><br>   <td>$</td><br>   <td>结束位置</td><br> </tr><br>  <tr><br>   <td>*</td><br>   <td>量词，等价于{0,}</td><br> </tr><br> <tr><br>   <td>+</td><br>   <td>量词，等价于{1,}</td><br> </tr><br> <tr><br>   <td>?</td><br>   <td>量词，等价于{0,1}</td><br> </tr><br>  <tr><br>   <td>?</td><br>   <td>特殊用法放在其他量词之后用于取消贪婪模式</td><br> </tr><br> <tr><br>   <td>.</td><br>   <td>除 “\n” 之外的任何单个字符</td><br> </tr><br> <tr><br>   <td>\b</td><br>   <td>匹配一个位置，单词边界</td><br> </tr><br>  <tr><br>   <td>\B</td><br>   <td>匹配一个位置，非单词边界</td><br> </tr><br>  <tr><br>   <td>\s</td><br>   <td>匹配任何不可见字符，包括空格</td><br> </tr><br></table>
-</li>
-<li><p>正则表达式种不能用空格匹配空格，需要用\s匹配空格</p>
-</li>
-</ol>
-<h3 id="Q：什么是贪婪模式？"><a href="#Q：什么是贪婪模式？" class="headerlink" title="Q：什么是贪婪模式？"></a>Q：什么是贪婪模式？</h3><p>所谓贪婪模式，就是满足匹配条件的情况下，会尽可能多地匹配所搜索的字符串。例如，对于字符串 ‘oooooo’ ，’o+?’ 将匹配单个’o’，而 ‘o+’ 将匹配所有的o。</p>
-<h4 id="这是为什么？"><a href="#这是为什么？" class="headerlink" title="这是为什么？"></a>这是为什么？</h4><p>这就是 ？号的特殊用法，当它放在<strong>其他量词</strong>(*, +, ?, {n}, {n,}, {n,m}) 后面，会取消贪婪模式，即尽可能少地进行匹配</p>
-<h2 id="正则表达式的应用场景"><a href="#正则表达式的应用场景" class="headerlink" title="正则表达式的应用场景"></a>正则表达式的应用场景</h2><p>配合字符串使用</p>
-<h3 id="1-检查字符串中是否包含指定的模式，常用于：替换操作的第一步-邮箱验证"><a href="#1-检查字符串中是否包含指定的模式，常用于：替换操作的第一步-邮箱验证" class="headerlink" title="1.检查字符串中是否包含指定的模式，常用于：替换操作的第一步 | 邮箱验证"></a>1.检查字符串中是否包含指定的<strong>模式</strong>，常用于：替换操作的第一步 | 邮箱验证</h3><p>【1】模式：简单理解就是检查字符串中是否包含指定的值，这里用模式这个词更准确，因为它可以表示用于泛指，模糊匹配，范围更广，比如是否包含多个0，这句话用代码就不能用指定的值来表示，因为1个0也是0，多个0也是0</p>
-<p><code>RegExp.test(String)</code>返回布尔值true/false，在只想知道目标字符串与某个模式是否匹配，但不需要知道其文本内容的情况下，这个方法非常有用。</p>
-<p><code>String.search(RegExp) </code>返回-1/位置</p>
-<h3 id="2-用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示"><a href="#2-用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示" class="headerlink" title="2.用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示"></a>2.用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示</h3><p><code>String.replace(RegExp, String2) </code>这里返回的是一个新的字符串</p>
-<p>其他的方法：</p>
-<p><code>RegExp.exec(String)</code> ：返回字符串符合模式匹配的值，如果没有，返回null，一般这个方法用得少，检查是否有值用test，替换值用replace，对指定的部分替换用捕获组的方式。</p>
-<p><code>String.match(RegExp)</code> ：如果具有选项g则找出所有匹配项，如果没有选项g，则会返回包含第一个匹配项的信息的数组，捕获组，整个匹配从0开始的索引，以及被解析的原始字符串。</p>
-<h3 id="如何用文字表达正则语法？"><a href="#如何用文字表达正则语法？" class="headerlink" title="如何用文字表达正则语法？"></a>如何用文字表达正则语法？</h3><p>字符串；tel:086-0666-88810009999</p>
-<p>原始正则：”^tel:[0-9]{1,3}-[0][0-9]{2,3}-[0-9]{8,11}$” </p>
-<p>速记理解：开始 “tel:普通文本”[0-9数字]{1至3位}”-普通文本”[0数字][0-9数字]{2至3位}”-普通文本”[0-9数字]{8至11位} 结束”</p>
-<p>等价简写后正则写法：”^tel:\d{1,3}-[0]\d{2,3}-\d{8,11}$” </p>
-<h3 id="Q-为什么-RegExp-1-就指代了-y"><a href="#Q-为什么-RegExp-1-就指代了-y" class="headerlink" title="Q: 为什么 RegExp.$1 就指代了 /y+/?"></a>Q: 为什么 RegExp.$1 就指代了 /y+/?</h3><p>描述：</p>
-<p>为什么RegExp这个构造函数能知道我要的捕获组？我并没有以如下的方式获取捕获组，为什么就可以得到这个捕获组了呢?</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> pattern = <span class="regexp">/(y+)/</span>  <span class="comment">// 定义一个模式</span></div><div class="line"><span class="keyword">let</span> matches = pattern.exec(fmt)</div><div class="line"><span class="keyword">let</span> captureGroup = matches[<span class="number">1</span>]  <span class="comment">// 获取捕获组</span></div></pre></td></tr></table></figure>
-<p>如图：<br><img src="http://p0w4c0e5i.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E7%96%91%E6%83%91.png" alt="正则疑惑"><br>高程上是这么说的:</p>
-<blockquote>
-<h3 id="5-4-3-RegExp构造函数属性"><a href="#5-4-3-RegExp构造函数属性" class="headerlink" title="5.4.3 RegExp构造函数属性"></a>5.4.3 RegExp构造函数属性</h3><p>RegExp构造函数包含一些属性（这些属性在其他语言中被看成静态属性）。这些属性适用于作用域中的所有正则表达式，并且基于所执行的最近一次正则表达式操作而而变化。关于这些属性的另一个独特之处，就是可以通过两种方式访问它们。换句话说，这些属性分别有一个长属性名和一个短属性名</p>
-<p><table><br>        <tr><br>            <th>长属性名</th><br>            <th>短属性名</th><br>            <th>说明</th><br>        </tr><br>        <tr><br>            <th>input</th><br>            <th>$_</th><br>            <th>模式最近一次要匹配的字符串</th><br>        </tr><br>        <tr><br>            <th>lastMatch</th><br>            <th>$&amp;</th><br>            <th>模式最近一次的匹配项</th><br>        </tr><br>        <tr><br>            <th>lastParen</th><br>            <th>$+</th><br>            <th>模式最近一次的捕获组</th><br>        </tr><br>         <tr><br>            <th>leftContext</th><br>            <th>$`</th><br>            <th>input字符串中lastMatch之前的文本</th><br>        </tr><br>         <tr><br>            <th>multline</th><br>            <th>$*</th><br>            <th>布尔值，表示是否所有表达式都使用多行文本</th><br>        </tr><br>         <tr><br>            <th>rightContext</th><br>            <th>$’</th><br>            <th>input字符串中lastMatch之后的文本</th><br>        </tr><br>    </table><br>   使用这些属性可以从exec()或test()执行的操作中提取出更具体的信息。</p>
-<p>当然，除了这些属性以外，还有9个用于存储捕获组的构造函数属性，访问这些属性的语法是 RegExp.$1、 RegExp.$2、 RegExp.$3…… RegExp.$9，在调用exec()或test()方法时，这些属性会自动被填充。</p>
-</blockquote>
-<p>从上面已经找到了我们想要的答案：</p>
-<ol>
-<li><p>RegExp构造函数包含一些静态属性</p>
-</li>
-<li><p>静态属性的值基于所执行的最近一次正则表达式操作而而变化，比如exec()或test()</p>
-</li>
-<li><p>RegExp.$1访问到的就是最近一次正则表达式操作的捕获组内容</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> text = <span class="string">"this has been a short summer"</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> pattern = <span class="regexp">/(.)hort/g</span></div><div class="line"></div><div class="line"><span class="keyword">if</span>(pattern.test(text)) &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'获取最近一次要匹配的字符串: '</span> + <span class="built_in">RegExp</span>.$_)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'获取最近一次的匹配项: '</span> + <span class="built_in">RegExp</span>.lastMatch)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'获取最近一次匹配的捕获组: '</span> + <span class="built_in">RegExp</span>.lastParen)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'获取字符串最近一次匹配之前的文本:'</span> +<span class="built_in">RegExp</span>.leftContext)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'是否所有表达式都使用了多行文本: '</span> + <span class="built_in">RegExp</span>.multline)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'获取字符串最近一次匹配之后的文本: '</span> + <span class="built_in">RegExp</span>.rightContext)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'通过RegExp获取捕获组: '</span> + <span class="built_in">RegExp</span>.$<span class="number">1</span>)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'通过RegExp获取捕获组: '</span> + <span class="built_in">RegExp</span>.$<span class="number">2</span>)</div><div class="line">&#125;</div><div class="line"><span class="comment">// 获取最近一次要匹配的字符串: this has been a short summer</span></div><div class="line"><span class="comment">// 获取最近一次的匹配项: short</span></div><div class="line"><span class="comment">// 获取最近一次匹配的捕获组: s</span></div><div class="line"><span class="comment">// 获取字符串最近一次匹配之前的文本:this has been a</span></div><div class="line"><span class="comment">// 是否所有表达式都使用了多行文本: undefined</span></div><div class="line"><span class="comment">// 获取字符串最近一次匹配之后的文本:  summer</span></div><div class="line"><span class="comment">// 通过RegExp获取捕获组: s</span></div><div class="line"><span class="comment">// 通过RegExp获取捕获组:   // 因为没有第二个捕获组，所有没有填充值</span></div></pre></td></tr></table></figure>
-
-          
+          <p>关键词<br>  精确匹配 模糊匹配 位置匹配 重复出现 分组 捕获 反向引用 片段匹配 捕获的引用 邮箱验证 敏感词屏蔽 字符串修剪<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/14/正则表达式学习总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -775,7 +686,7 @@
 
       
         
-          <h3 id="关键字："><a href="#关键字：" class="headerlink" title="关键字："></a>关键字：</h3><p> 拓展名<br>
+          <p>关键词<br> 拓展名<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/21/关于文件拓展名的误区/#more" rel="contents">
@@ -922,7 +833,7 @@
 
       
         
-          <h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>HTTP 重定向 </p>
+          <p>关键词<br> <strong>HTTP 重定向</strong> </p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>3XX 状态码都是重定向相关，但是不同的3XX有着不同的区别，导致使用场景上的区别，当我们设置重定向的时候，这点尤为重要。之前做了个服务器处理表单的代码，体会到了不同状态码的区别。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 添加中间件处理POST请求表单</span></div><div class="line">app.use(<span class="built_in">require</span>(<span class="string">'body-parser'</span>)());</div><div class="line">app.get(<span class="string">'/newsletter'</span>,(req, res) =&gt; &#123;</div><div class="line">  </div><div class="line">  res.render(<span class="string">'newsletter'</span>,&#123;<span class="attr">csrf</span>: <span class="string">'CSRF token goes here'</span>&#125;);</div><div class="line">&#125;);</div><div class="line">app.post(<span class="string">'/process'</span>,(req, res) =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Form (form querystring): '</span> + req.query.form);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'CSRF token (from hidden from field): '</span> + req.body._csrf);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Name (from visiable from field): '</span> + req.body.email);</div><div class="line">  res.redirect(<span class="number">303</span>, <span class="string">'/thanks-you'</span>);  <span class="comment">// 这里用到了重定向</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
           <!--noindex-->
@@ -1071,7 +982,7 @@
 
       
         
-          <h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p><strong>Linux Unix 起源</strong><br>
+          <p>关键词<br> <strong>Linux Unix 起源</strong><br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/19/Linux起源/#more" rel="contents">
@@ -1218,7 +1129,7 @@
 
       
         
-          <h1 id="JavaScript事件"><a href="#JavaScript事件" class="headerlink" title="JavaScript事件"></a>JavaScript事件</h1><p>关键词： 事件流 事件冒泡 事件捕获 事件委托 事件处理函数被执行的时机 自定义事件 事件触发的三个阶段 事件对象 事件目标元素<br>
+          <p>关键词<br> 事件流 事件冒泡 事件捕获 事件委托 事件处理函数被执行的时机 自定义事件 事件触发的三个阶段 事件对象 事件目标元素<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/09/JavaScript-事件/#more" rel="contents">
@@ -1512,7 +1423,7 @@
 
       
         
-          <p>关键词: 作用域 定义时 变量查找规则 赋值操作基于作用域查找规则 查找目标的值也是基于作用域查找规则<br>
+          <p>关键词<br> 作用域 定义时 变量查找规则 赋值操作基于作用域查找规则 查找目标的值也是基于作用域查找规则<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/19/深入理解JavaScript作用域/#more" rel="contents">
@@ -1659,7 +1570,7 @@
 
       
         
-          <h1 id="JavaScript函数设计"><a href="#JavaScript函数设计" class="headerlink" title="JavaScript函数设计"></a>JavaScript函数设计</h1><p>关键词: 黑匣子 抽象 封装 参数个数检查 参数类型检查<br>
+          <p>关键词<br> <strong>黑匣子 抽象 封装 参数个数检查 参数类型检查</strong><br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/18/JavaScript函数的设计/#more" rel="contents">
@@ -1806,7 +1717,7 @@
 
       
         
-          <h1 id="闭包中使用this存在的问题"><a href="#闭包中使用this存在的问题" class="headerlink" title="闭包中使用this存在的问题"></a>闭包中使用this存在的问题</h1><p>关键词: 闭包 函数声明时 函数运行时 词法作用域 特殊变量 箭头函数<br>
+          <p>关键词<br>  闭包 函数声明时 函数运行时 词法作用域 特殊变量 箭头函数<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/16/闭包中使用this存在的问题/#more" rel="contents">
