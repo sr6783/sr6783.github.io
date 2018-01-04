@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://p0w4c0e5i.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%B8%B8%E7%94%A8%E5%85%83%E5%AD%97%E7%AC%A6.%20png">
 <meta property="og:image" content="http://p0w4c0e5i.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E7%96%91%E6%83%91.png">
 <meta property="og:image" content="http://p0w4c0e5i.bkt.clouddn.com/JS/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8FRegExp%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%B1%9E%E6%80%A7.png">
-<meta property="og:updated_time" content="2017-12-26T07:52:09.000Z">
+<meta property="og:updated_time" content="2018-01-04T10:30:46.261Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式学习总结">
 <meta name="twitter:description" content="关键词  精确匹配 模糊匹配 位置匹配 重复出现 分组 捕获 反向引用 片段匹配 捕获的引用 邮箱验证 敏感词屏蔽 字符串修剪">
@@ -393,7 +393,7 @@
       
         <p>关键词<br>  精确匹配 模糊匹配 位置匹配 重复出现 分组 捕获 反向引用 片段匹配 捕获的引用 邮箱验证 敏感词屏蔽 字符串修剪<br><a id="more"></a></p>
 <h2 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h2><ol>
-<li><p>又叫规则表达式，它是用代码来准确表述一些我们语言上描述的规则，比如：用代码描述多个0，多个0就叫模式，规则</p>
+<li><p>又叫规则表达式，它是用代码来准确表述一些我们语言上描述的规则，比如：用代码描述多个0，其中多个0就叫模式，规则</p>
 </li>
 <li><p>谈正则肯定离不开字符串</p>
 </li>
@@ -404,7 +404,7 @@
 <li><p>指定匹配的位置(<font color="red"><strong>实际上就是为了不断章取义</strong></font>)</p>
 </li>
 </ol>
-<p>我们已经看到了,一个正则表达式中的许多元素才能够匹配字符串的一个字符.<br>例如: \s 匹配的只是一个空白符.还有一些正则表达式的元素匹配的是字符之间宽度为0的空间,而不是实际的字符例如: \b 匹配的是一个词语的边界,也就是处于一个/w字字符和一个\w非字字符之间的边界.像\b 这样的字符并不指定任何一个匹配了的字符串中的字符,它们指定的是匹配所发生的合法位置.有时我们称这些元素为正则表达式的锚.因为它们将模式定位在检索字符串中的一个特定位置.最常用的锚元素是 ^, 它使模式依赖于字符串的开头,而锚元素$则使模式定位在字符串的末尾.</p>
+<p>我们已经看到了,一个正则表达式中的许多元素才能够匹配字符串的一个字符.<br>例如: \s 匹配的只是一个空白符.还有一些正则表达式的元素匹配的是字符之间宽度为0的空间,而不是实际的字符例如: \b 匹配的是一个词语的边界,也就是处于一个/w字字符和一个\w非字字符之间的边界.像\b 这样的字符并不指定任何一个匹配了的字符串中的字符,它们指定的是匹配所发生的合法位置.有时我们称这些元素为正则表达式的<strong>锚</strong>.因为它们将模式定位在检索字符串中的一个特定位置.最常用的锚元素是 ^, 它使模式依赖于字符串的开头,而锚元素$则使模式定位在字符串的末尾.</p>
 <p>例如:要匹配词 “javascript” ,我们可以使用正则表达式 /^ javascript $/. 如果我们想检索 “java” 这个词自身 (不像在 “javascript” 中那样作为前缀),那么我们可以使用模式 /\s java \s /, 它要求在词语java之前和之后都有空格.但是这样作有两个问题.第一: 如果 “java” 出现在一个字符的开头或者是结尾.该模式就不会与之匹配,除非在开头和结尾处有一个空格. 第二: 当这个模式找到一个与之匹配的字符时,它返回的匹配的字符串前端和后端都有空格,这并不是我们想要的.因此,我们使用词语的边界 \b 来代替真正的空格符 \s 进行匹配. 结果表达式是 /\b java \b/.<br>下面是正则表达式的锚字符:<br>字符 含义 </p>
 <hr>
 <p>^ 匹配的是字符的开头,在多行检索中,匹配的是一行的开头 </p>
@@ -432,7 +432,7 @@
 </li>
 <li><p>小括号()的作用很强大</p>
 <ul>
-<li><p>分组:被小括号包裹的n个字符会被视为一个字符(专业术语:单元),这样可以方便? + *的整体匹配</p>
+<li><p>分组: 被小括号包裹的n个字符会被视为一个字符(专业术语:单元),这样可以方便? + *的整体匹配</p>
 <ul>
 <li><p>在完整模式中定义子模式：(场景：一堆图片要重命名,文件名是截屏图片xxx2016,我们要把2016改成2017，首先我们不能直接找2016，因为这样的话会找到别的带有2016字样的文件，所以我们肯定是先匹配所有的”截屏图片xxx2016”这个模式，也就是完整模式,然后通过这个模式下再去找我们要的核心:2016，最后再进行替换操作,而2016就是子模式)</p>
 </li>
@@ -463,7 +463,7 @@
 <p><code>String.match(RegExp)</code> ：如果具有选项g则找出所有匹配项，如果没有选项g，则会返回包含第一个匹配项的信息的数组，捕获组，整个匹配从0开始的索引，以及被解析的原始字符串。</p>
 <h3 id="如何用文字表达正则语法？"><a href="#如何用文字表达正则语法？" class="headerlink" title="如何用文字表达正则语法？"></a>如何用文字表达正则语法？</h3><p>字符串；tel:086-0666-88810009999</p>
 <p>原始正则：”^tel:[0-9]{1,3}-[0][0-9]{2,3}-[0-9]{8,11}$” </p>
-<p>速记理解：开始 “tel:普通文本”[0-9数字]{1至3位}”-普通文本”[0数字][0-9数字]{2至3位}”-普通文本”[0-9数字]{8至11位} 结束”</p>
+<p>速记理解：匹配开始 “tel:普通文本”[0-9数字]{1至3位}”-普通文本”[0数字][0-9数字]{2至3位}”-普通文本”[0-9数字]{8至11位} 结束”</p>
 <p>等价简写后正则写法：”^tel:\d{1,3}-[0]\d{2,3}-\d{8,11}$” </p>
 <h4 id="Q-为什么-RegExp-1-就指代了-y"><a href="#Q-为什么-RegExp-1-就指代了-y" class="headerlink" title="Q: 为什么 RegExp.$1 就指代了 /y+/?"></a>Q: 为什么 RegExp.$1 就指代了 /y+/?</h4><p>描述：</p>
 <p>为什么RegExp这个构造函数能知道我要的捕获组？我并没有以如下的方式获取捕获组，为什么就可以得到这个捕获组了呢?</p>
@@ -483,7 +483,61 @@
 </li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> text = <span class="string">"this has been a short summer"</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> pattern = <span class="regexp">/(.)hort/g</span></div><div class="line"></div><div class="line"><span class="keyword">if</span>(pattern.test(text)) &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'获取最近一次要匹配的字符串: '</span> + <span class="built_in">RegExp</span>.$_)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'获取最近一次的匹配项: '</span> + <span class="built_in">RegExp</span>.lastMatch)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'获取最近一次匹配的捕获组: '</span> + <span class="built_in">RegExp</span>.lastParen)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'获取字符串最近一次匹配之前的文本:'</span> +<span class="built_in">RegExp</span>.leftContext)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'是否所有表达式都使用了多行文本: '</span> + <span class="built_in">RegExp</span>.multline)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'获取字符串最近一次匹配之后的文本: '</span> + <span class="built_in">RegExp</span>.rightContext)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'通过RegExp获取捕获组: '</span> + <span class="built_in">RegExp</span>.$<span class="number">1</span>)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'通过RegExp获取捕获组: '</span> + <span class="built_in">RegExp</span>.$<span class="number">2</span>)</div><div class="line">&#125;</div><div class="line"><span class="comment">// 获取最近一次要匹配的字符串: this has been a short summer</span></div><div class="line"><span class="comment">// 获取最近一次的匹配项: short</span></div><div class="line"><span class="comment">// 获取最近一次匹配的捕获组: s</span></div><div class="line"><span class="comment">// 获取字符串最近一次匹配之前的文本:this has been a</span></div><div class="line"><span class="comment">// 是否所有表达式都使用了多行文本: undefined</span></div><div class="line"><span class="comment">// 获取字符串最近一次匹配之后的文本:  summer</span></div><div class="line"><span class="comment">// 通过RegExp获取捕获组: s</span></div><div class="line"><span class="comment">// 通过RegExp获取捕获组:   // 因为没有第二个捕获组，所有没有填充值</span></div></pre></td></tr></table></figure>
-
+<h4 id="模式对象的实例属性"><a href="#模式对象的实例属性" class="headerlink" title="模式对象的实例属性"></a>模式对象的实例属性</h4><blockquote>
+<p>尤其注意实例属性和静态属性的区别</p>
+</blockquote>
+<p>通过这些属性可以取得有关模式的各种信息</p>
+<ul>
+<li>是否设置了 g 修饰符? =&gt; pattern.global</li>
+<li>是否设置了 i 修饰符? =&gt; pattern.ignoreCase</li>
+<li>是否设置了 m 修饰符? =&gt; pattern.multiline</li>
+<li>获取正则表达式的字符串表示 =&gt; pattern.source</li>
+<li><p>查找/设置开始搜索下一个匹配项的字符位置 =&gt; pattern.lastIndex</p>
+<ul>
+<li><p>注意,这里从字面理解起来可能会有困惑,最后的索引? 指的是下次开始搜索匹配项的起始字符位置</p>
+</li>
+<li><p>注意,这个行为仅仅在<strong>具有修饰符</strong>的模式对象中有用,比如<code>g</code>,<code>y</code>(es6新增),在没有修饰符的模式对象中会忽略这个变化,即获取/设置不具有修饰符的模式对象的<code>lastIndex</code>属性,会被忽略.</p>
+</li>
+<li><p>注意,只有调用<code>exec()</code>和<code>test()</code>这些模式对象的方式 lastIndex 属性才会发生改变;调用字符串的方法,比如<code>match</code>方法,lastIndex 属性不会发生改变.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="ES6对正则表达式的修复和增强"><a href="#ES6对正则表达式的修复和增强" class="headerlink" title="ES6对正则表达式的修复和增强"></a>ES6对正则表达式的修复和增强</h2><h3 id="修复1"><a href="#修复1" class="headerlink" title="修复1"></a>修复1</h3><p>  原本( ES5 )的正则表达式无法对码位(code point)大于 0<em>FFFF 的字符进行匹配,会匹配不上,因为对于码位大于 0</em>FFFF 的字符需要用2个码位(或者说字符)去表示一个字符(指码位大于0<em>FFFF 的字符),但是正则表达式却不知道这回事,它依然会认为这2个码位表示2个字符而不是码位大于 0</em>FFFF 的字符,这是因为正则表达式默认操作模式是编码单元(code unit)操作模式.</p>
+<blockquote>
+<p>用2个码位(编码单元)表示1个字符(或者说一个码位)的术语就叫代理对</p>
+</blockquote>
+<p>那么 ES6 怎么修复这个问题呢?<br>ES6引入了修饰符<code>u</code>, 含义为开启<code>Unicode</code> 模式,如此一来模式对象就不会视<strong>代理对</strong>为2个字符了.其实这里应该不少人和自己一样有个疑问:我怎么知道什么时候2个字符是映射一个单字符而不是2个单字符?这里在自己查阅资料后得到了理解,即代理对的定义:如果第一个值来自于高代理区(D800–DBFF),并且第二个值来自于低代理去( DC00-DFFF),那么这就是一个代理对,即2个字符映射一个辅助平面(supplementary plane)或者说码位大于 0*FFFF 的字符.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> text = <span class="string">'𠮷'</span>;</div><div class="line"><span class="regexp">/^\uD842/</span>.test(<span class="string">'\uD842\uDFB7'</span>) <span class="comment">// true  </span></div><div class="line">/^\uD842/u.test(<span class="string">'\uD842\uDFB7'</span>) <span class="comment">// false </span></div><div class="line">/^\uD842/.test(text) <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>第二行代码说明了 JavaScript 正则表达式对象默认的操作模式-编码单元(也可以叫不认识代理对模式),<code>\uD842\uDFB7</code>即代理对表示汉字”吉”,但是正则表达式并不认识代理对,仍把它当成2个字符,所以第二行结果是true(当成单字符匹配),而使用修饰符<code>u</code>后,正则表达式就会开启 Unicode 模式,<font color="red"><strong>即拥有识别代理对的能力</strong></font>,目标字符串如果存在代理对就会有类似添加小括号的行为(便于理解)，即<code>(\uD842\uDFB7)</code>,显然此时模式<code>\uD842</code>并不匹配<code>(\uD842\uDFB7)</code>,所以第三行代码结果为false。第四行的结果为 true, 可以看出对于模式匹配字符串,字符串首先会默认转换为编码单元再进行模式匹配.</p>
+<p>以上示例,我们学到了什么?</p>
+<ul>
+<li><p>模式匹配的时候,字符串会转换成对应的编码单元</p>
+</li>
+<li><p>使用了<code>u</code>修饰符,则会开启 Unicode 模式,此时如果字符串中存在代理对,会被正确识别</p>
+</li>
+<li><p>使用了<code>u</code>修饰符,并不影响模式本身,即<code>/\^\uD842/u</code>和<code>/\^\uD842/</code>仍然匹配<code>\uD842</code>这个字符,只是如果这个字符在目标字符串中不表示自身,而是作为代理对的一部分,这两种模式就会存在是否正确识别的差异.</p>
+</li>
+</ul>
+<h3 id="修复2-正则表达式的复制"><a href="#修复2-正则表达式的复制" class="headerlink" title="修复2 正则表达式的复制"></a>修复2 正则表达式的复制</h3><h3 id="增强"><a href="#增强" class="headerlink" title="增强"></a>增强</h3><h4 id="粘连修饰符-y"><a href="#粘连修饰符-y" class="headerlink" title="粘连修饰符 y"></a>粘连修饰符 y</h4><p>粘连(sticky)修饰符,何为粘连修饰符?这就不得不提到 g 修饰符了,如果默认的不带 g 修饰符,每次匹配会重新从字符串开始的位置匹配,我称之为无状态匹配.但是 g 修饰符会从上一次匹配成功的下一个位置开始,即剩余字符串开始匹配,而 y 修饰符和 g 修饰符类似,也是如此,不同之处在于，g 修饰符只要剩余位置中存在匹配就可，而 y 修饰符确保匹配必须从剩余的第一个位置开始，这也就是“粘连”的含义。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> s = <span class="string">'aaa_aa_a'</span>;</div><div class="line"><span class="keyword">let</span> pattern1 = <span class="regexp">/a+/</span>;  </div><div class="line"><span class="keyword">let</span> pattern2 = <span class="regexp">/a+/g</span>; </div><div class="line"><span class="keyword">let</span> pattern3 = <span class="regexp">/a+/y</span>;  </div><div class="line"></div><div class="line"><span class="comment">// 第一次匹配</span></div><div class="line">pattern1.exec(s);  <span class="comment">//['aaa']</span></div><div class="line">pattern2.exec(s);  <span class="comment">//['aaa']</span></div><div class="line">pattern3.exec(s);  <span class="comment">//['aaa']</span></div><div class="line"></div><div class="line"><span class="comment">// 第二次匹配</span></div><div class="line">pattern1.exec(s);  <span class="comment">//['aaa']</span></div><div class="line">pattern2.exec(s);  <span class="comment">//['aa']</span></div><div class="line">pattern3.exec(s);  <span class="comment">//null</span></div></pre></td></tr></table></figure>
+<p>第一次匹配的结果都一样,因为都是从目标字符串的开头进行匹配,而第二次匹配的结果却各不相同,因为不带修饰符的模式匹配是无状态匹配,即每次都从目标字符串的开头重新匹配,而带有修饰符 g 和 y 的则会记住上次匹配完时的位置,下次匹配时候从<font color="red"><strong>剩余字符串的开头</strong></font>继续匹配,而 y 修饰符返回为 null 是因为 y 暗含了<code>\^</code>语义,而 g 修饰符则没这个语义,只要在剩余字符串中能匹配到模式即可.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// y 修饰符与lastIndex属性</span></div><div class="line"><span class="keyword">const</span> REGEX = <span class="regexp">/a/y</span>;</div><div class="line"></div><div class="line"><span class="comment">// 指定从2号位置开始匹配</span></div><div class="line">REGEX.lastIndex = <span class="number">2</span>;</div><div class="line"></div><div class="line"><span class="comment">// 不是粘连，匹配失败</span></div><div class="line">REGEX.exec(<span class="string">'xaya'</span>) <span class="comment">// null</span></div><div class="line"></div><div class="line"><span class="comment">// 指定从3号位置开始匹配</span></div><div class="line">REGEX.lastIndex = <span class="number">3</span>;</div><div class="line"></div><div class="line"><span class="comment">// 3号位置是粘连，匹配成功</span></div><div class="line"><span class="keyword">const</span> match = REGEX.exec(<span class="string">'xaxa'</span>);</div><div class="line">match.index <span class="comment">// 3</span></div><div class="line">REGEX.lastIndex <span class="comment">// 4</span></div></pre></td></tr></table></figure>
+<p>从上面这2个示例,我们学到了什么?</p>
+<ul>
+<li><p><code>y</code>修饰符暗含了<code>\^</code>的语义.</p>
+</li>
+<li><font color="red"><strong>y修饰符的设计本意，就是让头部匹配的标志^在全局匹配中都有效。</strong></font>
+</li>
+<li><p>模式对象的<code>lastIndex</code>属性可以影响模式匹配时从目标字符串的哪个位置开始匹配.</p>
+</li>
+</ul>
+<h4 id="flags-属性"><a href="#flags-属性" class="headerlink" title="flags 属性"></a>flags 属性</h4><p>在 ES5中,我们无法直接获取一个模式对象的修饰符,那么在 ES5中我们是如何做的呢?</p>
+<p>注意:<em>模式对象的<code>source</code>属性只能获得模式的文本而不能获得修饰符</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFlags</span>(<span class="params">re</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> text = re.toString()</div><div class="line">  <span class="keyword">return</span> text.substring(text.lastIndexOf(<span class="string">'/'</span>)+<span class="number">1</span>, text.length);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// toString()的返回值为 "/ab/g"</span></div><div class="line"><span class="keyword">let</span> re = <span class="regexp">/ab/g</span>;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(getFlags(re)); <span class="comment">// 'g'</span></div></pre></td></tr></table></figure>
+<p>为了使获取修饰符的过程更简单, ES6新增了一个<code>flags</code>属性,它与<code>source</code>属性都是只读的原型属性访问器,对其只定义了 getter 方法,访问这个属性会返回所有应用于当前模式对象的修饰符字符串.</p>
+<h4 id="sticky-属性"><a href="#sticky-属性" class="headerlink" title="sticky 属性"></a>sticky 属性</h4><p>与y修饰符相匹配，ES6 的正则对象多了sticky属性，表示是否设置了y修饰符。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> r = <span class="regexp">/hello\d/y</span>;</div><div class="line">r.sticky <span class="comment">// true</span></div></pre></td></tr></table></figure>
       
     </div>
 
@@ -667,7 +721,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#心得"><span class="nav-number">1.</span> <span class="nav-text">心得</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的特点"><span class="nav-number">2.</span> <span class="nav-text">正则表达式的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规则总结"><span class="nav-number">3.</span> <span class="nav-text">规则总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q：什么是贪婪模式？"><span class="nav-number">3.1.</span> <span class="nav-text">Q：什么是贪婪模式？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这是为什么？"><span class="nav-number">3.1.1.</span> <span class="nav-text">这是为什么？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的应用场景"><span class="nav-number">4.</span> <span class="nav-text">正则表达式的应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检查字符串中是否包含指定的模式，常用于：替换操作的第一步-邮箱验证"><span class="nav-number">4.1.</span> <span class="nav-text">检查字符串中是否包含指定的模式，常用于：替换操作的第一步 | 邮箱验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示"><span class="nav-number">4.2.</span> <span class="nav-text">用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何用文字表达正则语法？"><span class="nav-number">4.3.</span> <span class="nav-text">如何用文字表达正则语法？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q-为什么-RegExp-1-就指代了-y"><span class="nav-number">4.3.1.</span> <span class="nav-text">Q: 为什么 RegExp.$1 就指代了 /y+/?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-3-RegExp构造函数属性"><span class="nav-number">4.4.</span> <span class="nav-text">5.4.3 RegExp构造函数属性</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#心得"><span class="nav-number">1.</span> <span class="nav-text">心得</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的特点"><span class="nav-number">2.</span> <span class="nav-text">正则表达式的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规则总结"><span class="nav-number">3.</span> <span class="nav-text">规则总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q：什么是贪婪模式？"><span class="nav-number">3.1.</span> <span class="nav-text">Q：什么是贪婪模式？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这是为什么？"><span class="nav-number">3.1.1.</span> <span class="nav-text">这是为什么？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的应用场景"><span class="nav-number">4.</span> <span class="nav-text">正则表达式的应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检查字符串中是否包含指定的模式，常用于：替换操作的第一步-邮箱验证"><span class="nav-number">4.1.</span> <span class="nav-text">检查字符串中是否包含指定的模式，常用于：替换操作的第一步 | 邮箱验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示"><span class="nav-number">4.2.</span> <span class="nav-text">用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何用文字表达正则语法？"><span class="nav-number">4.3.</span> <span class="nav-text">如何用文字表达正则语法？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q-为什么-RegExp-1-就指代了-y"><span class="nav-number">4.3.1.</span> <span class="nav-text">Q: 为什么 RegExp.$1 就指代了 /y+/?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-3-RegExp构造函数属性"><span class="nav-number">4.4.</span> <span class="nav-text">5.4.3 RegExp构造函数属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模式对象的实例属性"><span class="nav-number">4.4.1.</span> <span class="nav-text">模式对象的实例属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6对正则表达式的修复和增强"><span class="nav-number">5.</span> <span class="nav-text">ES6对正则表达式的修复和增强</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复1"><span class="nav-number">5.1.</span> <span class="nav-text">修复1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修复2-正则表达式的复制"><span class="nav-number">5.2.</span> <span class="nav-text">修复2 正则表达式的复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增强"><span class="nav-number">5.3.</span> <span class="nav-text">增强</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#粘连修饰符-y"><span class="nav-number">5.3.1.</span> <span class="nav-text">粘连修饰符 y</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#flags-属性"><span class="nav-number">5.3.2.</span> <span class="nav-text">flags 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sticky-属性"><span class="nav-number">5.3.3.</span> <span class="nav-text">sticky 属性</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -688,7 +742,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-https://avatars3.githubusercontent.com/u/22876599?v=3&u=0474e9af540119d97b93e246b7cf87fd02e0e355&s=400"></i>
   </span>
