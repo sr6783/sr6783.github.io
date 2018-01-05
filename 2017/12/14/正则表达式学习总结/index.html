@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://p0w4c0e5i.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%B8%B8%E7%94%A8%E5%85%83%E5%AD%97%E7%AC%A6.%20png">
 <meta property="og:image" content="http://p0w4c0e5i.bkt.clouddn.com/%E6%AD%A3%E5%88%99%E7%96%91%E6%83%91.png">
 <meta property="og:image" content="http://p0w4c0e5i.bkt.clouddn.com/JS/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8FRegExp%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%B1%9E%E6%80%A7.png">
-<meta property="og:updated_time" content="2018-01-04T10:49:30.478Z">
+<meta property="og:updated_time" content="2018-01-04T14:43:51.432Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式学习总结">
 <meta name="twitter:description" content="关键词  精确匹配 模糊匹配 位置匹配 重复出现 分组 捕获 反向引用 片段匹配 捕获的引用 邮箱验证 敏感词屏蔽 字符串修剪">
@@ -395,6 +395,8 @@
 <h2 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h2><ol>
 <li><p>又叫规则表达式，它是用代码来准确表述一些我们语言上描述的规则，比如：用代码描述多个0，其中多个0就叫模式，规则</p>
 </li>
+<li><p>模式匹配是强大的,凡是你能用语言表述出来的规则,在正则表达式中都可以实现,而难点在于你是否深入正则表达式</p>
+</li>
 <li><p>谈正则肯定离不开字符串</p>
 </li>
 <li><p>正则表达式最难理解的地方在于等价这个概念，这个概念增加了理解难度，如果把等价都恢复成原始写法，自己书写正则就超级简单了，就像说话一样去写你的正则了</p>
@@ -402,6 +404,8 @@
 <li><p>正则表达式除了匹配字符以外，还可以<strong>匹配位置</strong></p>
 </li>
 <li><p>指定匹配的位置(<font color="red"><strong>实际上就是为了不断章取义</strong></font>)</p>
+</li>
+<li><p>复杂的规则往往就是指那些带了多个<strong>条件</strong>的正则表达式,比如位置条件,比如只匹配百分号前的数字,只匹配美元符号后的数字…这些</p>
 </li>
 </ol>
 <p>我们已经看到了,一个正则表达式中的许多元素才能够匹配字符串的一个字符.<br>例如: \s 匹配的只是一个空白符.还有一些正则表达式的元素匹配的是字符之间宽度为0的空间,而不是实际的字符例如: \b 匹配的是一个词语的边界,也就是处于一个/w字字符和一个\w非字字符之间的边界.像\b 这样的字符并不指定任何一个匹配了的字符串中的字符,它们指定的是匹配所发生的合法位置.有时我们称这些元素为正则表达式的<strong>锚</strong>.因为它们将模式定位在检索字符串中的一个特定位置.最常用的锚元素是 ^, 它使模式依赖于字符串的开头,而锚元素$则使模式定位在字符串的末尾.</p>
@@ -538,6 +542,20 @@
 <p>为了使获取修饰符的过程更简单, ES6新增了一个<code>flags</code>属性,它与<code>source</code>属性都是只读的原型属性访问器,对其只定义了 getter 方法,访问这个属性会返回所有应用于当前模式对象的修饰符字符串.</p>
 <h3 id="增强3-sticky-属性"><a href="#增强3-sticky-属性" class="headerlink" title="增强3 sticky 属性"></a>增强3 sticky 属性</h3><p>与y修饰符相匹配，ES6 的正则对象多了sticky属性，表示是否设置了y修饰符。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> r = <span class="regexp">/hello\d/y</span>;</div><div class="line">r.sticky <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<h2 id="正则表达式的先行-xing-断言-lookahead-和后行断言-lookbehind"><a href="#正则表达式的先行-xing-断言-lookahead-和后行断言-lookbehind" class="headerlink" title="正则表达式的先行(xíng)断言(lookahead)和后行断言(lookbehind)"></a>正则表达式的先行(xíng)断言(lookahead)和后行断言(lookbehind)</h2><h3 id="什么是先行断言呢"><a href="#什么是先行断言呢" class="headerlink" title="什么是先行断言呢?"></a>什么是先行断言呢?</h3><blockquote>
+<p>如同^代表开头，$代表结尾，\b代表单词边界一样，先行断言和后行断言也有类似的作用，<strong>它们只匹配某些位置</strong>，在匹配过程中，不占用字符，所以被称为“零宽”。所谓位置，是指字符串中(每行)第一个字符的左边、最后一个字符的右边以及相邻字符的中间（假设文字方向是头左尾右）。</p>
+<p>全称是零宽先行断言,因为本身不消耗字符</p>
+</blockquote>
+<p>”先行断言“指的是，x只有在y前面才匹配，必须写成/x(?=y)/。比如，只匹配百分号之前的数字，要写成/\d+(?=%)/。”先行否定断言“指的是，x只有不在y前面才匹配，必须写成/x(?!y)/。比如，只匹配不在百分号之前的数字，要写成/\d+(?!%)/。</p>
+<p>先行断言示例: 如果 re(待匹配的模式) 后面的字符是 gular, 则匹配这个 re</p>
+<p>例如对”a regular expression”这个字符串，要想匹配regular中的re，但不能匹配expression中的re，可以用”re(?=gular)”，该表达式限定了re右边的位置，这个位置之后是gular，但并不消耗gular这些字符，将表达式改为”re(?=gular).”，将会匹配reg，元字符.匹配了g，括号这一砣匹配了e和g之间的位置。</p>
+<p>先行否定断言的匹配: 如果re(待匹配的模式) 后面的字符不是regex和regular, 则匹配这个 re<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/re(?!g)/</div></pre></td></tr></table></figure></p>
+<p>即匹配时会限制模式后面的位置不能出现字符 g<br>否定和非否定的区别在于该位置之后的字符</p>
+<blockquote>
+<p>(?=y) 又叫 正向先行断言, (?!y)又叫负向先行断言</p>
+</blockquote>
+<h3 id="如何理解先行和后行"><a href="#如何理解先行和后行" class="headerlink" title="如何理解先行和后行?"></a>如何理解先行和后行?</h3><h3 id="如何记忆先行形式"><a href="#如何记忆先行形式" class="headerlink" title="如何记忆先行形式"></a>如何记忆先行形式</h3><p>(?)是先行断言和后行断言的标识符,代表不占用位置,不消耗字符,?可以理解成询问<br>(?=pattern)询问是</p>
+
       
     </div>
 
@@ -657,7 +675,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -675,7 +693,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -721,7 +739,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#心得"><span class="nav-number">1.</span> <span class="nav-text">心得</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的特点"><span class="nav-number">2.</span> <span class="nav-text">正则表达式的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规则总结"><span class="nav-number">3.</span> <span class="nav-text">规则总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q：什么是贪婪模式？"><span class="nav-number">3.1.</span> <span class="nav-text">Q：什么是贪婪模式？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这是为什么？"><span class="nav-number">3.1.1.</span> <span class="nav-text">这是为什么？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的应用场景"><span class="nav-number">4.</span> <span class="nav-text">正则表达式的应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检查字符串中是否包含指定的模式，常用于：替换操作的第一步-邮箱验证"><span class="nav-number">4.1.</span> <span class="nav-text">检查字符串中是否包含指定的模式，常用于：替换操作的第一步 | 邮箱验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示"><span class="nav-number">4.2.</span> <span class="nav-text">用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何用文字表达正则语法？"><span class="nav-number">4.3.</span> <span class="nav-text">如何用文字表达正则语法？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q-为什么-RegExp-1-就指代了-y"><span class="nav-number">4.3.1.</span> <span class="nav-text">Q: 为什么 RegExp.$1 就指代了 /y+/?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-3-RegExp构造函数属性"><span class="nav-number">4.4.</span> <span class="nav-text">5.4.3 RegExp构造函数属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模式对象的实例属性"><span class="nav-number">4.4.1.</span> <span class="nav-text">模式对象的实例属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6对正则表达式的修复和增强"><span class="nav-number">5.</span> <span class="nav-text">ES6对正则表达式的修复和增强</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复1"><span class="nav-number">5.1.</span> <span class="nav-text">修复1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修复2-正则表达式的复制"><span class="nav-number">5.2.</span> <span class="nav-text">修复2 正则表达式的复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增强1-粘连修饰符-y"><span class="nav-number">5.3.</span> <span class="nav-text">增强1 粘连修饰符 y</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增强2-flags-属性"><span class="nav-number">5.4.</span> <span class="nav-text">增强2 flags 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增强3-sticky-属性"><span class="nav-number">5.5.</span> <span class="nav-text">增强3 sticky 属性</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#心得"><span class="nav-number">1.</span> <span class="nav-text">心得</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的特点"><span class="nav-number">2.</span> <span class="nav-text">正则表达式的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规则总结"><span class="nav-number">3.</span> <span class="nav-text">规则总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q：什么是贪婪模式？"><span class="nav-number">3.1.</span> <span class="nav-text">Q：什么是贪婪模式？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这是为什么？"><span class="nav-number">3.1.1.</span> <span class="nav-text">这是为什么？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的应用场景"><span class="nav-number">4.</span> <span class="nav-text">正则表达式的应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检查字符串中是否包含指定的模式，常用于：替换操作的第一步-邮箱验证"><span class="nav-number">4.1.</span> <span class="nav-text">检查字符串中是否包含指定的模式，常用于：替换操作的第一步 | 邮箱验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示"><span class="nav-number">4.2.</span> <span class="nav-text">用指定的文本替换正则模式匹配到的文本，常用于：敏感词过滤，各种文本插值语法，高亮显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何用文字表达正则语法？"><span class="nav-number">4.3.</span> <span class="nav-text">如何用文字表达正则语法？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q-为什么-RegExp-1-就指代了-y"><span class="nav-number">4.3.1.</span> <span class="nav-text">Q: 为什么 RegExp.$1 就指代了 /y+/?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-3-RegExp构造函数属性"><span class="nav-number">4.4.</span> <span class="nav-text">5.4.3 RegExp构造函数属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模式对象的实例属性"><span class="nav-number">4.4.1.</span> <span class="nav-text">模式对象的实例属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6对正则表达式的修复和增强"><span class="nav-number">5.</span> <span class="nav-text">ES6对正则表达式的修复和增强</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修复1"><span class="nav-number">5.1.</span> <span class="nav-text">修复1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修复2-正则表达式的复制"><span class="nav-number">5.2.</span> <span class="nav-text">修复2 正则表达式的复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增强1-粘连修饰符-y"><span class="nav-number">5.3.</span> <span class="nav-text">增强1 粘连修饰符 y</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增强2-flags-属性"><span class="nav-number">5.4.</span> <span class="nav-text">增强2 flags 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增强3-sticky-属性"><span class="nav-number">5.5.</span> <span class="nav-text">增强3 sticky 属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的先行-xing-断言-lookahead-和后行断言-lookbehind"><span class="nav-number">6.</span> <span class="nav-text">正则表达式的先行(xíng)断言(lookahead)和后行断言(lookbehind)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是先行断言呢"><span class="nav-number">6.1.</span> <span class="nav-text">什么是先行断言呢?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何理解先行和后行"><span class="nav-number">6.2.</span> <span class="nav-text">如何理解先行和后行?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何记忆先行形式"><span class="nav-number">6.3.</span> <span class="nav-text">如何记忆先行形式</span></a></li></ol></li></ol></div>
             
 
           </div>
